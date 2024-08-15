@@ -3,10 +3,8 @@ NAME = megaphone
 
 # Compiler
 CC = g++
-#CFLAGS := -Wall -Wextra -Werror -fsanitize=thread -g
-#LDFLAGS = -fsanitize=thread -lpthread
-CFLAGS := -Wall -Wextra -Werror
-#LDFLAGS = -lpthread
+
+CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 # Source files
 SRC = megaphone.cpp
