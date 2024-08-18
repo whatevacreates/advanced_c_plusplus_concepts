@@ -6,13 +6,16 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:43:59 by eprzybyl          #+#    #+#             */
-/*   Updated: 2024/08/18 13:58:07 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:08:00 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 # include "contact.hpp"
+# include <cctype>
+# include <iostream>
+# include <string>
 
 class Phonebook
 {

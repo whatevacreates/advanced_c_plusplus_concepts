@@ -6,7 +6,7 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 13:08:07 by eprzybyl          #+#    #+#             */
-/*   Updated: 2024/08/18 14:02:29 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2024/08/18 16:13:53 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 #include "phonebook.hpp"
 
 Contact ::Contact(void) : name(""), lastname(""), nickname(""), number(""),
-	secret("")
-	return ;
-
+	secret(""), display_info("") {
+		return; }
 
 /*	Desctructor	*/
-Contact::~Contact(void)
-	return ;
+Contact::~Contact(void) {return; };
 
 bool Contact::add_fields(int index)
 {
@@ -36,10 +34,72 @@ bool Contact::add_fields(int index)
 		return (false);
 	std::cout << "And my Darkest Secret is: ";
 	std::getline(std::cin, secret);
+	if (!check_inputs())
+		return (false);
 	std::cout << std::endl;
 	create_display_str(index);
 	return (true);
 }
+
+bool Contact::check_inputs(void)
+{
+	if (name == "" || lastname == "" || nickname == "" || number == ""
+		|| secret == "")
+		{
+			std::cout << "Contact cannot have empty fields! Try again." << std::endl;
+			return (false);
+		}
+		
+		/*
+	trim_white_spaces(name);
+	trim_white_spaces(lastname);
+	trim_white_spaces(nickname);
+	trim_white_spaces(number);
+	trim_white_spaces(secret);*/
+	return (true);
+}
+
+void Contact::trim_white_spaces(std::string &str)
+{
+	std::string new_str;
+	std::cout << "length before" << str.length() << std::endl;
+	size_t i = 0;
+	while (std::isspace(str[i]) && i < str.length())
+	{
+		std::cout << "space loop -----------" << std::endl;
+		i++;
+	}
+		
+	while(!std::isspace(str[i]) && i < str.length())
+	{
+		std::cout << "assignement space loop -----------" << std::endl;
+		new_str += str[i++];
+	}
+	str = new_str;
+	std::cout << "length after" << str.length() << std::endl;
+}
+
+// std::string(start, end + 1);
+
+/*
+std::string trim(const std::string& str) {
+	// Find the first non-whitespace character
+	auto start = str.begin(); // from std::string::begin() (from <string>)
+	while (start != str.end() && std::isspace(*start)) {
+		// std::isspace is from <cctype>
+		++start;
+	}
+
+	// Find the last non-whitespace character
+	auto end = str.end(); // from std::string::end() (from <string>)
+	do {
+		--end;
+	} while (std::distance(start, end) > 0 && std::isspace(*end));
+		// std::distance is from <algorithm>
+
+	// Return the trimmed string
+	return (std::string(start, end + 1)); // from std::string (from <string>)
+}*/
 
 void Contact::display_contacts()
 {
