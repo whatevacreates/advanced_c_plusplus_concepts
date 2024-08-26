@@ -6,12 +6,12 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 13:08:07 by eprzybyl          #+#    #+#             */
-/*   Updated: 2024/08/18 16:13:53 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2024/08/18 21:56:53 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contact.hpp"
-#include "phonebook.hpp"
+#include "Contact.hpp"
+#include "Phonebook.hpp"
 
 Contact ::Contact(void) : name(""), lastname(""), nickname(""), number(""),
 	secret(""), display_info("") {
@@ -50,12 +50,6 @@ bool Contact::check_inputs(void)
 			return (false);
 		}
 		
-		/*
-	trim_white_spaces(name);
-	trim_white_spaces(lastname);
-	trim_white_spaces(nickname);
-	trim_white_spaces(number);
-	trim_white_spaces(secret);*/
 	return (true);
 }
 
@@ -78,28 +72,6 @@ void Contact::trim_white_spaces(std::string &str)
 	str = new_str;
 	std::cout << "length after" << str.length() << std::endl;
 }
-
-// std::string(start, end + 1);
-
-/*
-std::string trim(const std::string& str) {
-	// Find the first non-whitespace character
-	auto start = str.begin(); // from std::string::begin() (from <string>)
-	while (start != str.end() && std::isspace(*start)) {
-		// std::isspace is from <cctype>
-		++start;
-	}
-
-	// Find the last non-whitespace character
-	auto end = str.end(); // from std::string::end() (from <string>)
-	do {
-		--end;
-	} while (std::distance(start, end) > 0 && std::isspace(*end));
-		// std::distance is from <algorithm>
-
-	// Return the trimmed string
-	return (std::string(start, end + 1)); // from std::string (from <string>)
-}*/
 
 void Contact::display_contacts()
 {

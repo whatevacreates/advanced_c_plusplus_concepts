@@ -6,12 +6,12 @@
 /*   By: eprzybyl <eprzybyl@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 13:13:11 by eprzybyl          #+#    #+#             */
-/*   Updated: 2024/08/17 19:30:31 by eprzybyl         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:33:02 by eprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contact.hpp"
-#include "phonebook.hpp"
+#include "Contact.hpp"
+#include "Phonebook.hpp"
 #include <iostream>
 #include <string>
 
@@ -29,6 +29,7 @@ bool Phonebook::add_contact()
 {
 	if (contact_count < max)
 	{
+		
 		if (!contacts[contact_count].add_fields(contact_count))
 			return (false);
 		contact_count++;
@@ -56,7 +57,7 @@ void Phonebook::search_contact()
 	while (++i < contact_count)
 		contacts[i].display_contacts();
 	std::cout << '\n' << "What number would you like to display (1-8)? " << std::endl;
-	std::cout << "Press 0 to return (to the main menu." << std::endl;
+	std::cout << "Press 0 to return to the main menu." << std::endl;
 	std::getline(std::cin, number_to_display);
 	index = std::stoul(number_to_display);
 	if (index == 0)
@@ -78,10 +79,12 @@ void Phonebook::display_one_contact(int index)
 
 void Phonebook::exit_phonebook()
 {
+	/*
 	for (int i = 0; i < contact_count; i++)
 	{
 		contacts[i].clear_fields();
-	}
+	}*/
+	
 	contact_count = 0;
 	std::cout << "Your phonebook has been cleaned." << std::endl;
 }
