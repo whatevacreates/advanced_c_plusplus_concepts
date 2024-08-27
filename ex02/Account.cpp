@@ -1,6 +1,7 @@
 #include "Account.hpp"
 #include <iomanip>
 #include <iostream>
+#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -22,14 +23,7 @@ Account::Account(int initial_deposit) : _amount(initial_deposit),
 	_totalAmount += initial_deposit;
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created\n";
 }
-/*
-Account::~Account(void)
-{
-	_displayTimestamp();
-	_nbAccounts--;
-	_totalAmount -= _amount;
-	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed\n";
-}*/
+
 Account::~Account() {
     int i = 0;
     _nbAccounts--;
@@ -74,20 +68,29 @@ void Account::displayAccountsInfos(void)
 
 void Account::_displayTimestamp(void)
 {
-	time_t	now;
+	std::time_t currentTime = std::time(NULL);
+    std::tm *localTime = std::localtime(&currentTime);
 
-	now = time(NULL);
-	std::cout << std::put_time(localtime(&now), "[%Y%m%d_%H%M%S] ");
+    
+    char buffer[20]; 
+
+    std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", localTime);
+
+
+    std::cout << buffer;
 }
 
 void Account::makeDeposit(int deposit)
 {
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";deposit:" << deposit << ";amount:" << _amount;
 	_amount += deposit;
-    //accountArray[MAX-1] = _amount;
-    std::cout << "FEFERGREGRDGG CHECK" << accountArray[MAX-1] << std::endl;
+    accountArray[_accountIndex] = _amount;
 	_nbDeposits++;
 	_totalNbDeposits++;
 	_totalAmount += deposit;
+	if(deposit > 0)
+	std::cout << ";amount:" << _amount << ";nb_deposits:1"<< std::endl;
 }
 
 bool Account::makeWithdrawal(int withdrawal)
@@ -102,7 +105,7 @@ bool Account::makeWithdrawal(int withdrawal)
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:" << _nbWithdrawals;
     
 	_amount -= withdrawal; 
-    //accountArray[MAX-1] -= _amount;
+    accountArray[_accountIndex] = _amount;
 	_nbWithdrawals++;
 	_totalNbWithdrawals++;
 	_totalAmount -= withdrawal;
