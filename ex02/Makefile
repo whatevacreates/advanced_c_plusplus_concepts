@@ -7,7 +7,7 @@ CC = g++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC = tests_temp.cpp \
+SRC = tests.cpp \
 		Account.cpp
 	  
 # Object files

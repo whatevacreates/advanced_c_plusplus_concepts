@@ -12,7 +12,6 @@
 #include <functional>
 #include "Account.hpp"
 
-
 int		main( void ) {
 
 	typedef std::vector<Account::t>							  accounts_t;
@@ -58,8 +57,7 @@ int		main( void ) {
 	}
 
 	Account::displayAccountsInfos();
-	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
-
+	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ));
 	return 0;
 }
 

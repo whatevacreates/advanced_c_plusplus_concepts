@@ -1,26 +1,49 @@
 #include "Account.hpp"
+#include <iomanip>
 #include <iostream>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
+int MAX = 0;
+
+static int accountArray[100] = {0}; 
+
 
 Account::Account(int initial_deposit) : _amount(initial_deposit),
 	_nbDeposits(0), _nbWithdrawals(0)
 {
-    _displayTimestamp();
-
-     
+	
+    accountArray[MAX] =  _amount;
+    MAX += 1;
+	_displayTimestamp();
 	_accountIndex = _nbAccounts++;
 	_totalAmount += initial_deposit;
-    std::cout << "index:" << _accountIndex << ";amount:"<< _amount<<";created\n";
+	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created\n";
 }
-
+/*
 Account::~Account(void)
 {
+	_displayTimestamp();
 	_nbAccounts--;
 	_totalAmount -= _amount;
+	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed\n";
+}*/
+Account::~Account() {
+    int i = 0;
+    _nbAccounts--;
+    _totalAmount -= _amount;
+    
+    if(_accountIndex == MAX -1)
+    {
+        while(MAX > i)
+        {
+            _displayTimestamp();
+            std::cout << "index:" << i << ";amount:" << accountArray[i] << ";closed" << std::endl;
+            i++;
+        }
+    }
 }
 
 int Account::getNbAccounts(void)
@@ -51,13 +74,17 @@ void Account::displayAccountsInfos(void)
 
 void Account::_displayTimestamp(void)
 {
-	std::cout << "[19920104_091532] ";
+	time_t	now;
+
+	now = time(NULL);
+	std::cout << std::put_time(localtime(&now), "[%Y%m%d_%H%M%S] ");
 }
 
 void Account::makeDeposit(int deposit)
 {
-    
 	_amount += deposit;
+    //accountArray[MAX-1] = _amount;
+    std::cout << "FEFERGREGRDGG CHECK" << accountArray[MAX-1] << std::endl;
 	_nbDeposits++;
 	_totalNbDeposits++;
 	_totalAmount += deposit;
@@ -66,13 +93,16 @@ void Account::makeDeposit(int deposit)
 bool Account::makeWithdrawal(int withdrawal)
 {
 	_displayTimestamp();
+
 	if (withdrawal > _amount)
 	{
 		std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:refused" << std::endl;
 		return (false);
 	}
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:" << _nbWithdrawals;
-	_amount -= withdrawal;
+    
+	_amount -= withdrawal; 
+    //accountArray[MAX-1] -= _amount;
 	_nbWithdrawals++;
 	_totalNbWithdrawals++;
 	_totalAmount -= withdrawal;
