@@ -1,5 +1,5 @@
 # Name of the executable
-NAME = account
+NAME = zombie
 
 # Compiler
 CC = c++
@@ -7,9 +7,10 @@ CC = c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC = tests.cpp \
-		Account.cpp
-	  
+SRC = zombie.cpp \
+		main.cpp \
+		zombieHorde.cpp \
+		
 # Object files
 OBJ = $(SRC:.cpp=.o)
 

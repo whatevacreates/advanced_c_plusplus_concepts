@@ -1,9 +1,7 @@
 #include "Zombie.h"
 
-Zombie::Zombie(std::string name)
+Zombie::Zombie()
 {
-	this->name = name;
-	announce();
 	return ;
 }
 
@@ -15,5 +13,10 @@ Zombie::~Zombie(void)
 
 void Zombie::announce(void)
 {
-	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << name << ": is created" << std::endl;
+}
+
+void Zombie::setName(std::string name)
+{
+	this->name = name;
 }
