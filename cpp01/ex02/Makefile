@@ -1,14 +1,14 @@
 # Name of the executable
-NAME = megaphone
+NAME = brain
 
 # Compiler
-CC = g++
+CC = c++
 
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC = megaphone.cpp
-	  
+SRC = main.cpp 
+		
 # Object files
 OBJ = $(SRC:.cpp=.o)
 
