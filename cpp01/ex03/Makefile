@@ -4,13 +4,13 @@ NAME = war
 # Compiler
 CC = c++
 
-CFLAGS := -Wall -Wextra -Werror -std=c++98
+CFLAGS := -Wall -Wextra -Werror -std=c++98 -Iheaders
 
 # Source files
-SRC = main.cpp \
-	HumanA.cpp \
-	HumanB.cpp \
-	Weapon.cpp
+SRC = src/main.cpp \
+	src/HumanA.cpp \
+	src/HumanB.cpp \
+	src/Weapon.cpp
 		
 # Object files
 OBJ = $(SRC:.cpp=.o)
