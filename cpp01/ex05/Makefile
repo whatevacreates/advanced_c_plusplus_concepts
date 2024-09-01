@@ -1,11 +1,11 @@
-NAME = sed
+NAME = harl
 
 CC = c++
 
-CFLAGS:= -Wall -Wextra -Werror -std=c++98 -Iheaders
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheaders
 
 SRC = src/main.cpp \
-	src/sed.cpp
+	src/harl.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -26,4 +26,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-

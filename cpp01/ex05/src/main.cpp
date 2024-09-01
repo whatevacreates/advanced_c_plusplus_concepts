@@ -1,20 +1,23 @@
-#include "Sed.hpp"
+#include "Harl.hpp"
 
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	std::ifstream oldFile;
-    std::ofstream newFile;    
-    std::string newFileName;
-    std::string		line;
-   
-    size_t			find_value;
-    checks(argc, argv, oldFile);
-    newFileName = argv[1];
-    newFile.open(std::string( newFileName + ".replace").c_str(), std::ios::out);
-     std::string s1 = argv[2];
-    std::string s2 = argv[3];
-	
+	Harl harl;
+	std::cout << "Get to know Harl! ";
+	std::string input;
+	while (1)
+	{
+		std::cout << "Input: DEBUG, INFO, WARNING, ERROR ";
+		std::cout << "or EXIT. EXIT exits the program." << std::endl;
+
+		std::cin >> input;
+
+		if (input == "EXIT")
+			return (-1);
+		else if (input != "DEBUG" && input != "INFO" && input != "WARNING"
+			&& input != "ERROR")
+			std::cout << "This is not right. Try again!" << std::endl;
+		else
+			harl.complain(input);
+	}
 }
-
-
-
