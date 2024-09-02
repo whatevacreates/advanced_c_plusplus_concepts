@@ -7,7 +7,7 @@ CC = c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC = zombie.cpp \
+SRC = Zombie.cpp \
 		main.cpp \
 		newZombie.cpp \
 		randomChump.cpp

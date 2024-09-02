@@ -1,11 +1,11 @@
-NAME = sed
+NAME = fixed
 
 CC = c++
 
-CFLAGS:= -Wall -Wextra -Werror -std=c++98 -Iheaders
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheaders
 
 SRC = src/main.cpp \
-	src/Sed.cpp
+	src/Fixed.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -20,10 +20,9 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(NAME)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-

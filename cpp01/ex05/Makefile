@@ -5,7 +5,7 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheaders
 
 SRC = src/main.cpp \
-	src/harl.cpp
+	src/Harl.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
