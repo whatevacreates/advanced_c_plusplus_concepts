@@ -1,26 +1,25 @@
 #ifndef FIXED_HPP
-#define FIXED_HPP
+# define FIXED_HPP
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
 
 class Fixed
 {
+  private:
+	int _fixedPointNumValue;
+	static const int fractionalBits = 8;
+
   public:
-	Fixed(); //default constructor
-	Fixed(const Fixed& copy); //copy constructor
-	Fixed& operator=(const Fixed& copy); //copy assignment operator overload
-	~Fixed(); //decontructor
+	Fixed();
+	Fixed(const Fixed& other);
+	Fixed& operator=(const Fixed& other);
+	~Fixed();
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
-
-  private:
-	int _fixedPoint;
-    static const int _fractionalBits = 8;
 };
 
 #endif
-
 
 /*
 A default constructor that initializes the fixed-point number value to 0.

@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	Fixed a;
+	Fixed a; //creating an instance
 	Fixed b(a); ///making a copy using copy contructor
 	Fixed c;
 	c = b; //making a copy by using assignemnt operator
@@ -11,3 +11,4 @@ int	main(void)
 	std::cout << c.getRawBits() << std::endl;
 	return (0);
 }
+
