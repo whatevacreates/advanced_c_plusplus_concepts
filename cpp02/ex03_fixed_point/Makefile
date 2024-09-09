@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheaders
 
 SRC = src/main.cpp \
 		src/Fixed.cpp \
-		src/Point.cpp
+		src/Point.cpp \
+		src/Tests.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

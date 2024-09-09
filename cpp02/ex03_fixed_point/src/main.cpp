@@ -1,44 +1,96 @@
 #include "Fixed.hpp"
 #include "Point.hpp"
 
+void	checkDigits(std::string str)
+{
+	size_t	i;
+
+	i = 0;
+	if (str[0] == '0' && str.length() > 1)
+	{
+		std::cout << "Your input cannot start from 0 and cannot be 0." << std::endl;
+		exit(1);
+	}
+	if (str[0] == '-' && str.length() > 1)
+	{
+		std::cout << "Your input cannot be a negative number." << std::endl;
+		exit(1);
+	}
+	while (i < str.length())
+	{
+		if (!isdigit(str[i]))
+		{
+			std::cout << "Your input needs to consists of digits only."
+							"Input ints only."
+						<< std::endl;
+			exit(1);
+		}
+		i++;
+	}
+}
 int	main(void)
 {
-	Point const a(1.11, 3.34232);
-	Point const b(3.42342, 4.322);
-	Point const c(2.322, 1.32);
-	Point const point(1.22, 3);
-	if (bsp(a, b, c, point))
-		std::cout << "Yes, the point is within the triangle!" << std::endl;
-	else
-		std::cout << "No,"
-						"the point is outside the triangle on on the triangle's border"
-					<< std::endl;
+	int	min;
+	int	max;
+	int tests;
+
+	std::string min_str;
+	std::string max_str;
+	std::string tests_str;
+	std::cout << "Output int range for your tests: " << std::endl;
+	std::cout << "Min value: " << std::endl;
+	std::getline(std::cin, min_str);
+	std::cout << "Max value: " << std::endl;
+	std::getline(std::cin, max_str);
+	std::cout << "Number of tests to run: " << std::endl;
+	std::getline(std::cin, tests_str);
+	checkDigits(max_str);
+	checkDigits(min_str);
+	try
+	{
+		min = std::stoi(min_str);
+		max = std::stoi(max_str);
+		tests = std::stoi(tests_str);
+	}
+	catch (const std::invalid_argument &e)
+	{
+		std::cout << "Invalid argument: not a valid integer." << std::endl;
+		return (1);
+	}
+	catch (const std::out_of_range &e)
+	{
+		std::cout << "Out of range: value is too large or too small for an int." << std::endl;
+		return (1);
+	}
+	runTests(min, max, tests);
 	return (0);
 }
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
 {
-	Point	main;
-	float	mainT;
-	float	trianA;
-	float	trianB;
-	float	trianC;
+	Point		main;
+	float		mainT;
+	float		trianA;
+	float		trianB;
+	float		trianC;
+	const float	epsilon = 0.01f;
 
-	mainT = main.calcField(a, b, c);
-	trianA = main.calcField(a, b, point);
-	trianB = main.calcField(a, point, c);
-	trianC = main.calcField(point, b, c);
-	std::cout << "mainT" << mainT << std::endl;
-    std::cout << "A" << trianA << std::endl;
-     std::cout << "B" << trianB << std::endl;
-      std::cout << "C" << trianB << std::endl;
-	return (mainT == (trianA + trianB + trianC));
+	mainT = main.calcField(a, b, c, 1);
+	trianA = main.calcField(a, b, point, 0);
+	trianB = main.calcField(a, point, c, 0);
+	trianC = main.calcField(point, b, c, 0);
+	/*
+	check the fields:
+	std::cout << "mainTriangle :" << mainT << std::endl;
+	std::cout << "A: " << trianA << std::endl;
+	std::cout << "B: " << trianB << std::endl;
+	std::cout << "C: " << trianC << std::endl;*/
+	if (std::fabs(trianA) < epsilon || std::fabs(trianB) < epsilon
+		|| std::fabs(trianC) < epsilon)
+	{
+		std::cout << "\nThe point is on the border of the triangle.";
+		return (false);
+	}
+	return (std::fabs(mainT - (trianA + trianB + trianC)) < epsilon);
 }
 
-/*
-	Fixed a;
-	Fixed const b(10);
-	Fixed const c(42.42f);
-	Fixed const d(b);
-	a = Fixed(1234.4321f);
-*/

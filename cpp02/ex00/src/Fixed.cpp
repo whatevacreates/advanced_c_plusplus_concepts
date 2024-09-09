@@ -41,3 +41,9 @@ void Fixed::setRawBits(int const raw)
 	std::cout << "setRawBits member function called." << std::endl;
 	_fixedPointNumValue = raw;
 }
+
+int Fixed::return_sum()
+{
+	int sum;
+	return sum;
+}

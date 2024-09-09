@@ -52,6 +52,7 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
+	// converts fixed point value to int
 	return (_fixedPointNumValue / (1 << _fractionalBits));
 }
 
@@ -124,26 +125,46 @@ const Fixed &Fixed::min(const Fixed &numA, const Fixed &numB)
 Fixed &Fixed::operator++(void)
 {
 	this->_fixedPointNumValue++;
-	return *this;
+	return (*this);
 }
 
 Fixed Fixed::operator++(int)
 {
-	Fixed temp = *this;
+	Fixed	temp;
+
+	temp = *this;
 	_fixedPointNumValue++;
-	return(temp);
+	return (temp);
 }
 
 Fixed &Fixed::operator--(void)
 {
-
 	_fixedPointNumValue--;
 	return (*this);
 }
 
 Fixed Fixed::operator--(int)
 {
-	Fixed temp = *this;
+	Fixed	temp;
+
+	temp = *this;
 	_fixedPointNumValue--;
-	return(temp);
+	return (temp);
+}
+
+float Fixed::return_sum(Fixed a_x, Fixed b_y, Fixed b_x, Fixed c_y, Fixed c_x,
+	Fixed a_y)
+{
+	//const int temp;
+	float	sum;
+
+	Fixed ret(((a_x._fixedPointNumValue * b_y._fixedPointNumValue)
+		+ (b_x._fixedPointNumValue * c_y._fixedPointNumValue)
+		+ (c_x._fixedPointNumValue * a_y._fixedPointNumValue)
+		- ((a_y._fixedPointNumValue * b_x._fixedPointNumValue)
+		+ (b_y._fixedPointNumValue * c_x._fixedPointNumValue)
+		+ (c_y._fixedPointNumValue * a_x._fixedPointNumValue)))/(2));
+	sum = std::fabs(ret.toFloat());
+	sum = sum / (1 << (_fractionalBits * 2));
+	return (sum);
 }

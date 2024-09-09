@@ -53,6 +53,7 @@ class Fixed
 	static const Fixed &min(Fixed const &numA, Fixed const &numB);
 	static Fixed &max(Fixed &numA, Fixed &numB);
 	static const Fixed &max(Fixed const &numA, Fixed const &numB);
+	float return_sum(Fixed a_x, Fixed b_y, Fixed b_x, Fixed c_y, Fixed c_x, Fixed a_y);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
