@@ -1,12 +1,13 @@
-NAME = fixed
+NAME = scav
 
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheaders
 
 SRC = src/main.cpp \
-		src/Fixed.cpp \
-		src/Point.cpp
+	src/ScavTrap.cpp \
+	src/ClapTrap.cpp
+	
 
 OBJ = $(SRC:.cpp=.o)
 

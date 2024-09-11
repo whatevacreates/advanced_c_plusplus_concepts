@@ -4,10 +4,9 @@
 
 # include <cmath>
 # include <iostream>
+# include <limits>
 # include <random>
-#include <ctime> 
-#include <limits>
-#include <string>
+# include <string>
 
 class Point
 {
@@ -23,13 +22,12 @@ class Point
 	~Point();
 
 	float calcField(Point const a, Point const b, Point const c, int flag);
-	
 };
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point);
 float	randomFloat(int a, int b);
 void	runTests(int min, int max, int numberTests);
 int		randomInt(int a, int b);
-void validateNumbers(float a);
+void	validateNumbers(float a);
 
 #endif

@@ -46,6 +46,7 @@ int	main(void)
 	std::getline(std::cin, tests_str);
 	checkDigits(max_str);
 	checkDigits(min_str);
+	checkDigits(tests_str);
 	try
 	{
 		min = std::stoi(min_str);

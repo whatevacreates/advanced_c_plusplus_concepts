@@ -9,7 +9,7 @@ CFLAGS := -Wall -Wextra -Werror -std=c++98
 # Source files
 SRC = Zombie.cpp \
 		main.cpp \
-		zombieHorde.cpp \
+		ZombieHorde.cpp \
 		
 # Object files
 OBJ = $(SRC:.cpp=.o)

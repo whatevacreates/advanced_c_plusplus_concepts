@@ -7,7 +7,7 @@ Fixed::Fixed() : _fixedPointNumValue(0)
 	return ;
 }
 
-Fixed::Fixed(const Fixed &other) : _fixedPointNumValue(other.getRawBits())
+Fixed::Fixed(const Fixed &other) : _fixedPointNumValue(other._fixedPointNumValue)
 {
 	std::cout << "Copy constructor called." << std::endl;
 	return ;
@@ -44,6 +44,7 @@ int Fixed::getRawBits(void) const
 {
 	return (_fixedPointNumValue);
 }
+
 
 void Fixed::setRawBits(int const raw)
 {
