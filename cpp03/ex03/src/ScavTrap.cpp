@@ -1,10 +1,13 @@
 
+#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 #include "Utils.hpp"
 
 // Default constructor
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	
 	setHits(100); // ScavTrap-specific initialization
 	setEnergy(50);
 	setDamage(20);

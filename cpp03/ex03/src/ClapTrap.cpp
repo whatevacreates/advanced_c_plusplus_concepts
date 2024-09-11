@@ -1,3 +1,7 @@
+#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 #include "Utils.hpp"
 
 // Default constructor

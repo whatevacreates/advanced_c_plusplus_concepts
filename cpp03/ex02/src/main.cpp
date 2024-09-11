@@ -19,24 +19,24 @@ void	runGame(void)
 {
 	int	attacks;
 
-	ScavTrap attacker("Attacker_ScavTrap");
-	ScavTrap target("Target_ScavTrap");
+	FragTrap attacker("Attacker_FragTrap");
+	FragTrap target("Target_FragTrap");
 	while (1)
 	{
 		attacks = randomInt(1, 3);
-		attacker.guardGate();
+		attacker.highFivesGuys();
 		if (attacks_loop(attacks, attacker, target)
 			|| attacker.checkEnergyLevel() || target.checkEnergyLevel())
 			break ;
 		attacks = randomInt(1, 3);
-		target.guardGate();
+		target.highFivesGuys();
 		if (attacker.checkEnergyLevel() || target.checkEnergyLevel()
 			|| attacks_loop(attacks, target, attacker))
 			break ;
 	}
 }
 
-int	attacks_loop(int attacks, ScavTrap &attacker, ScavTrap &target)
+int	attacks_loop(int attacks, FragTrap &attacker, FragTrap &target)
 {
 	std::cout << "-------->> " << attacks << " attack(s) scheduled:" << std::endl;
 	for (int k = 0; k <= attacks; k++)
