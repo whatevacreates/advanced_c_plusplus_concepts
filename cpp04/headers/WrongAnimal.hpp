@@ -12,7 +12,7 @@ class WrongAnimal
     public:
     WrongAnimal();
     WrongAnimal(std::string type);
-    ~WrongAnimal();
+    virtual~WrongAnimal();
 
     //setters:
     void setType(std::string type);

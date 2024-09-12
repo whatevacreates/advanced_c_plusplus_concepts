@@ -1,6 +1,6 @@
 #include "../headers/WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal():_type("WrongAnimal"),_sound("Random animal sound.")
+WrongAnimal::WrongAnimal():_type("WrongAnimal"),_sound("Random Wrong animal sound.")
 {
     std::cout << "WrongAnimal: default constructor is called" << std::endl;
 }
@@ -38,7 +38,7 @@ std::string WrongAnimal::getSound(void)const
 
 void WrongAnimal::makeSound() const
 {
-    std::string sound = getSound();
-    std::string type = getType();
-    std::cout << type << " makes the sound: " << sound << std::endl;
+    //std::string sound = getSound();
+    //std::string type = getType();
+    std::cout << _type << " makes the sound: " << _sound << std::endl;
 }

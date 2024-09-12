@@ -11,5 +11,7 @@ class Dog : public Animal
     Dog();
     Dog(std::string type);
     ~Dog();
+
+     virtual void makeSound() const;
 };
 #endif

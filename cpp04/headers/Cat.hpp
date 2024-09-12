@@ -12,5 +12,7 @@ class Cat : public Animal
     Cat();
     Cat(std::string type);
     ~Cat();
+
+    virtual void makeSound() const;
 };
 #endif
