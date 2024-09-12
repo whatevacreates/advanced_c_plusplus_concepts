@@ -16,11 +16,8 @@ class Animal
 
     //setters:
     void setType(std::string type);
-    void setSound(std::string sound);
-
     //getters:
     std::string getType(void) const;
-    std::string getSound(void) const;
     virtual void makeSound() const;
 };
 

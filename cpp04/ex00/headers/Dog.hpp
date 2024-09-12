@@ -10,8 +10,9 @@ class Dog : public Animal
     public:
     Dog();
     Dog(std::string type);
-    ~Dog();
+    virtual ~Dog();
 
-     virtual void makeSound() const;
+    virtual void makeSound() const;
 };
 #endif
+
