@@ -21,7 +21,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	setHits(100);
 	setEnergy(50);
 	setDamage(20);
-	std::cout << "ScavTrap " << name << " constructed." << std::endl;
+	std::cout << "ScavTrap " << name << ": parameterized constructor called." << std::endl;
 }
 
 // Destructor

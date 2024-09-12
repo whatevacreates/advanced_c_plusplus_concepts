@@ -19,7 +19,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"),
 	setEnergy(ScavTrap::getEnergy());
 	setHits(FragTrap::getHits());
 	setDamage(FragTrap::getDamage());
-	std::cout << "DiamondTrap copy constructor called." << std::endl;
+	std::cout << "DiamondTrap parameterized constructor called." << std::endl;
 	return ;
 }
 

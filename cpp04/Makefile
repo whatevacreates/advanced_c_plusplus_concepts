@@ -4,10 +4,12 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheaders
 
-SRC = src = src/main.cpp \
+SRC = src/main.cpp \
 	src/Animal.cpp \
 	src/Dog.cpp \
-	src/Cat.cpp
+	src/Cat.cpp \
+	src/WrongCat.cpp \
+	src/WrongAnimal.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -19,7 +21,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CPP) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

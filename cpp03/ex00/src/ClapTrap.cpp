@@ -9,7 +9,7 @@ ClapTrap::ClapTrap() : _hits(10), _energy(10), _damage(0)
 ClapTrap::ClapTrap(std::string name) : _hits(10), _energy(10), _damage(0)
 {
 	_name = name;
-	std::cout << "Copy constructot called." << std::endl;
+	std::cout << "Parameterized constructor called." << std::endl;
 	return ;
 }
 
