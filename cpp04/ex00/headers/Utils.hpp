@@ -29,7 +29,14 @@
 # define COLOR_FASHION_BLUE      "\033[38;5;74m"    // #3b8dbf
 # define COLOR_FASHION_TEAL      "\033[38;5;72m"    // #4d818c
 
-
+# define B_BLACK   "\e[30;40m"
+# define B_RED     "\e[30;41m"
+# define B_GREEN   "\e[30;42m"
+# define B_YELLOW  "\e[30;43m"
+# define B_BLUE    "\e[30;44m"
+# define B_MAGENTA "\e[30;45m"
+# define B_CYAN    "\e[30;46m"
+# define B_LIME   "\e[38;5;191m" 
 
 
 // Reset Color

@@ -1,32 +1,32 @@
-#include "../headers/WrongAnimal.hpp"
-#include "../headers/WrongCat.hpp"
-#include "../headers/Utils.hpp"
-
 #include "WrongCat.hpp"
+#include "Utils.hpp"
 
-WrongCat::WrongCat() {
-    _type = "😼 WrongCat";
-    std::cout << PASTEL_TURQUOISE << ITALIC << "😼 WrongCat: constructor called" << RESET << std::endl;
-}
-
-WrongCat::WrongCat(const WrongCat& other)
+WrongCat::WrongCat()
 {
-    *this = other;
+	 std::cout << PASTEL_TURQUOISE << ITALIC << "😼 WrongCat: default constructor called" << RESET << std::endl;
+	this->_type = "WrongCat";
 }
 
-WrongCat& WrongCat::operator=(const WrongCat& other)
+WrongCat::~WrongCat()
 {
-    if(this != &other)
-    {
-        _type = other._type;
-    }
-    return *this;
+	 std::cout << PASTEL_TURQUOISE << ITALIC << "😼 WrongCat: destructor called" << RESET << std::endl;
 }
 
-WrongCat::~WrongCat() {
-   std::cout << PASTEL_TURQUOISE << ITALIC << "😼 WrongCat destructor called" << RESET << std::endl;
+WrongCat &WrongCat::operator=(const WrongCat &rhs)
+{
+	if(this == &rhs)
+		return *this;
+	this->_type =rhs._type;
+	return(*this);
 }
 
-void WrongCat::makeSound() const {
-    std::cout << PASTEL_TURQUOISE << ITALIC << "😼 WrongCat: Miau miau miau miau..." << RESET << std::endl;
+WrongCat::WrongCat(const WrongCat &src)
+{
+	 std::cout << PASTEL_TURQUOISE << ITALIC << "😼 WrongCat: copy constructor called" << RESET << std::endl;
+	*this = src;
+}
+
+void	WrongCat::makeSound() const
+{
+	 std::cout << PASTEL_TURQUOISE << ITALIC << "😼 WrongCat: meow" << RESET << std::endl;
 }

@@ -1,35 +1,38 @@
-#include "../headers/WrongAnimal.hpp"
-#include "../headers/Utils.hpp"
+#include "WrongAnimal.hpp"
+#include "Utils.hpp"
 
-
-WrongAnimal::WrongAnimal() : _type("WrongAnimal") 
+WrongAnimal::WrongAnimal():
+		_type("WrongAnimal")
 {
-    std::cout <<PASTEL_LIME  << BOLD << "WrongAnimal constructor called" <<RESET << std::endl;
+	std::cout <<PASTEL_LIME  << BOLD << "WrongAnimal default constructor called" <<RESET << std::endl;
+}
+
+WrongAnimal::WrongAnimal(const WrongAnimal &src)
+{
+	std::cout <<PASTEL_LIME  << BOLD << "WrongAnimal copy constructor called" <<RESET << std::endl;
+	*this = src;
+}
+
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &rhs)
+{
+	if(this == &rhs)
+		return *this;
+	this->_type = rhs._type;
+	return (*this);
 }
 
 WrongAnimal::~WrongAnimal()
 {
-    
-    std::cout <<PASTEL_LIME  << BOLD << "WrongAnimal destructor called" << RESET << std::endl;
+	std::cout <<PASTEL_LIME  << BOLD << "WrongAnimal destructor called" <<RESET << std::endl;
 }
 
-WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
+void	WrongAnimal::makeSound() const
 {
-    if(this != &other)
-    {
-        this->_type = other._type;
-    }
-    return *this;
+	std::cout <<PASTEL_LIME  << BOLD << _type << " ▶︎ •၊၊||၊|။||||| 0:10 <wrong animal sound>" << RESET << std::endl;
+
 }
-WrongAnimal::WrongAnimal(const WrongAnimal& other)
+
+std::string	WrongAnimal::getType() const
 {
-    *this = other;
-}
-
-std::string WrongAnimal::getType() const {
-    return _type;
-}
-
-void WrongAnimal::makeSound() const {
-    std::cout <<PASTEL_LIME  << BOLD << _type << " ▶︎ •၊၊||၊|။||||| 0:10 <wrong animal sound>" << RESET << std::endl;
+	return (this->_type);
 }

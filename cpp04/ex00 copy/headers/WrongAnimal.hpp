@@ -1,21 +1,19 @@
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef WRONGANIMAL_H
+#define WRONGANIMAL_H
 
-# include <iostream>
-# include <string>
+#include <iostream>
 
 class WrongAnimal
 {
-  protected:
-	std::string _type;
-
-  public:
-	WrongAnimal();  
-	WrongAnimal& operator=(const WrongAnimal& other);
-	WrongAnimal(const WrongAnimal& other);
-	virtual ~WrongAnimal(); 
-	std::string getType() const;
-	void makeSound() const; 
+	protected:
+		std::string _type;
+	public:
+		void			makeSound() const;
+		std::string		getType() const;
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal &);
+		WrongAnimal &operator=(const WrongAnimal &);
+		virtual ~WrongAnimal();
 };
 
 #endif
