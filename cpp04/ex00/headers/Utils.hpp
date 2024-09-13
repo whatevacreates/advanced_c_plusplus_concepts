@@ -36,7 +36,6 @@
 # define B_BLUE    "\e[30;44m"
 # define B_MAGENTA "\e[30;45m"
 # define B_CYAN    "\e[30;46m"
-# define B_LIME   "\e[38;5;191m" 
 
 
 // Reset Color

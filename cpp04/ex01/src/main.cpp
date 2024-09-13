@@ -5,40 +5,33 @@
 #include "../headers/WrongAnimal.hpp"
 #include "../headers/Utils.hpp"
 
-void		wrong_test(void)
-{
-	const WrongAnimal* meta = new WrongAnimal();
-	const WrongAnimal* i = new WrongCat();
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	meta->makeSound();
-	delete meta;
-	delete i;
-}
 
-void		correct_test(void)
+int		main(void)
 {
+    /*
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound(); //will output the cat sound!
-	j->makeSound(); //will output the dog sound!
+	j->makeSound(); //will output the dog sound!*/
+Brain brain;
 	meta->makeSound();
 	delete meta;
 	delete i;
 	delete j;
-}
-
-int		main(void)
-{
-	correct_test();
-    std::cout << "\n" << std::endl;
-    std::cout <<  B_YELLOW << "             WRONG TEST             " << RESET << std::endl;
-	wrong_test();
 	return (0);
 }
+
+
+
+
+
+
+
+
+
 
 
 /*
