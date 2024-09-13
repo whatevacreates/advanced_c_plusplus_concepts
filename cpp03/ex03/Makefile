@@ -15,6 +15,17 @@ OBJ = $(SRC:.cpp=.o)
 PINK = \033[3;35m
 PASTEL_GREEN = \033[38;5;120m
 GREEN = \033[0;32m
+BOLD = \033[1m
+ITALIC = \033[3m
+UNDERLINE = \033[4m
+STRIKETHROUGH = \033[9m
+PASTEL_PINK = \033[38;5;217m
+PASTEL_BLUE = \033[38;5;110m
+PASTEL_PURPLE = \033[38;5;182m
+PASTEL_YELLOW = \033[38;5;223m
+PASTEL_ORANGE = \033[38;5;216m
+PASTEL_CYAN = \033[38;5;159m
+PASTEL_RED = \033[38;5;210m
 RESET = \033[0m
 
 # Messages
@@ -25,9 +36,25 @@ INFO_MSG = "Available commands:\n- all: Build the program\n- clean: Remove objec
 .PHONY: all clean fclean re
 
 all: $(NAME)
-	@printf "$(PASTEL_GREEN)★ The executable diamond was successfully compiled ★\n\n$(RESET)"
+	@printf "$(PASTEL_GREEN)$(BOLD)\n\n★ The executable diamond was successfully compiled® ★\n\n$(RESET)"
+	@printf " _\n"
+	@printf "| |\n"
+	@printf "| |===( )  //////\n"
+	@printf "|_|  |||  | o o|\n"
+	@printf "     |||  ( c  )                    ____\n"
+	@printf "       ||| \\\\= /                   ||    \\\\_\n"
+	@printf "       ||||||                     ||     |\n"
+	@printf "       ||||||                  ...||__/|-\"\n"
+	@printf "       ||||||             __|__________|__\n"
+	@printf "         |||             |______________|\n"
+	@printf "         |||             || ||      || ||\n"
+	@printf "         |||             || ||      || ||\n"
+	@printf "  -------|||-------------||-||------||-||-------\n"
+	@printf "         |__>            || ||      || ||\n"
+	@printf "\n"
+	@printf "     hit any key to continue シ \n\n"
 	@printf "$(PINK)To Launch the program type: ./diamond$(RESET)\n\n"
-	@printf "$(PASTEL_GREEN)Available commands:\n- all: Build the program\n- clean: Remove object files\n- fclean: Remove object files and executable\n- re: Clean and recompile everything$(RESET)\n\n"
+	@printf "$(PINK)Available commands:\n→ make all: Build the program\n→ make clean: Remove object files\n→ make fclean: Remove object files and executable\n→ make re: Clean and recompile everything$(RESET)\n\n"
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME) > /dev/null 2>&1
@@ -37,10 +64,11 @@ $(NAME): $(OBJ)
 
 clean:
 	@rm -f $(OBJ)
-	@printf "$(GREEN)Object files cleaned.$(RESET)\n\n"
+	@printf "$(PASTEL_GREEN)\n\n✔ Object files cleaned.$(RESET)\n\n"
 
 fclean: clean
 	@rm -f $(NAME) 
-	@printf "$(GREEN)Executable $(NAME) cleaned.$(RESET)\n\n"
+	@printf "$(PASTEL_GREEN)✔ Executable $(NAME) cleaned.$(RESET)"
 
 re: fclean all
+	@printf "$(PASTEL_GREEN)✔ Recompiled $(NAME).$(RESET)\n\n"
