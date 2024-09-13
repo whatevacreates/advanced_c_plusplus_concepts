@@ -1,32 +1,75 @@
-NAME = animal
+NAME = animals
 
 CC = c++
-
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheaders
 
 SRC = src/main.cpp \
 	src/Animal.cpp \
-	src/Dog.cpp \
 	src/Cat.cpp \
-	src/WrongCat.cpp \
-	src/WrongAnimal.cpp
+	src/Dog.cpp \
+	src/WrongAnimal.cpp \
+	src/WrongCat.cpp
 
 OBJ = $(SRC:.cpp=.o)
+
+# Colors
+PINK = \033[3;35m
+PASTEL_GREEN = \033[38;5;120m
+GREEN = \033[0;32m
+BOLD = \033[1m
+ITALIC = \033[3m
+UNDERLINE = \033[4m
+STRIKETHROUGH = \033[9m
+PASTEL_PINK = \033[38;5;217m
+PASTEL_BLUE = \033[38;5;110m
+PASTEL_PURPLE = \033[38;5;182m
+PASTEL_YELLOW = \033[38;5;223m
+PASTEL_ORANGE = \033[38;5;216m
+PASTEL_CYAN = \033[38;5;159m
+PASTEL_RED = \033[38;5;210m
+RESET = \033[0m
+
+# Messages
+LAUNCH_MSG = "To Launch the program type: ./$(shell echo $(NAME) | tr 'A-Z' 'a-z')"
+SUCCESS_MSG = "★ The executable $(NAME) was successfully compiled ★\n"
+INFO_MSG = "Available commands:\n- all: Build the program\n- clean: Remove object files\n- fclean: Remove object files and executable\n- re: Clean and recompile everything"
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
+	@printf "$(PASTEL_GREEN)$(BOLD)\n\n★ The executable diamond was successfully compiled® ★\n\n$(RESET)"
+	@printf " _\n"
+	@printf "| |\n"
+	@printf "| |===( )  //////\n"
+	@printf "|_|  |||  | o o|\n"
+	@printf "     |||  ( c  )                    ____\n"
+	@printf "       ||| \\\\= /                   ||    \\\\_\n"
+	@printf "       ||||||                     ||     |\n"
+	@printf "       ||||||                  ...||__/|-\"\n"
+	@printf "       ||||||             __|__________|__\n"
+	@printf "         |||             |______________|\n"
+	@printf "         |||             || ||      || ||\n"
+	@printf "         |||             || ||      || ||\n"
+	@printf "  -------|||-------------||-||------||-||-------\n"
+	@printf "         |__>            || ||      || ||\n"
+	@printf "\n"
+	@printf "     hit any key to continue シ \n\n"
+	@printf "$(PINK)To Launch the program type: ./diamond$(RESET)\n\n"
+	@printf "$(PINK)Available commands:\n→ make all: Build the program\n→ make clean: Remove object files\n→ make fclean: Remove object files and executable\n→ make re: Clean and recompile everything$(RESET)\n\n"
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	@$(CC) $(OBJ) -o $(NAME) > /dev/null 2>&1
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null 2>&1
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
+	@printf "$(PASTEL_GREEN)\n\n✔ Object files cleaned.$(RESET)\n\n"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME) 
+	@printf "$(PASTEL_GREEN)✔ Executable $(NAME) cleaned.$(RESET)"
 
 re: fclean all
+	@printf "$(PASTEL_GREEN)✔ Recompiled $(NAME).$(RESET)\n\n"
