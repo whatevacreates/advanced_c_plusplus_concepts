@@ -5,15 +5,16 @@
 Cat::Cat() : Animal()
 {
 	_type = "Cat";
-	_catBrain = new Brain();
+	_catIdea = "😼 I want to go fishing MIAU MIAU";
+	_catBrain = new Brain(_catIdea);
 	std::cout << COLOR_FASHION_BLUE << "≽^•⩊•^≼ Cat default constructor called." << RESET << std::endl;
 	return ;
 }
 
-Cat::Cat(std::string type)
+Cat::Cat(std::string idea)
 {
 	std::cout << COLOR_FASHION_BLUE << "≽^•⩊•^≼ Cat: parametrerized constructor called." << RESET << std::endl;
-	_type = type;
+	_catIdea = idea;
 	return ;
 }
 
@@ -42,4 +43,9 @@ Cat& Cat::operator=(const Cat& other)
 	}
 
 	return *this;
+}
+
+void Cat::printIdeas() const
+{
+	_catBrain->printIdeas();
 }

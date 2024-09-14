@@ -27,7 +27,8 @@ class Animal
     void setType(std::string type);
     //getters:
     std::string getType(void) const;
-    
+
+    virtual void printIdeas() const = 0;
 };
 
 #endif

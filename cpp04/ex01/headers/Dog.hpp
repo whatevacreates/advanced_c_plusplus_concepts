@@ -13,11 +13,13 @@ class Dog : public Animal
     Brain* _dogBrain;
     public:
     Dog();
-    Dog(std::string type);
+    Dog(std::string idea);
     Dog(const Dog& other);
     Dog& operator=(const Dog& other);
     virtual ~Dog();
     void makeSound() const;
+   virtual void printIdeas() const;
+   
 };
 #endif
 

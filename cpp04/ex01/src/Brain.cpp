@@ -5,7 +5,7 @@ Brain::Brain()
 {
     for(int i = 0; i < 101; i++)
     {
-        _ideas[i] = "Idea nr " + std::to_string(i);
+        _ideas[i] = "Nobody's idea nr " + std::to_string(i);
     }
     std::cout << ITALIC << PASTEL_CREAM << "🧠 Brain: default copy contructor called." << RESET << std::endl;
     return;
@@ -13,12 +13,12 @@ Brain::Brain()
 
 Brain::Brain(std::string idea)
 {
-     std::cout << ITALIC << PASTEL_CREAM << "🧠 Brain: parameterized contructor called." << RESET << std::endl;
-      for(int i = 0; i < 101; i++)
+    for(int i = 0; i < 101; i++)
     {
-        _ideas[i] = "Idea nr " + std::to_string(i);
+        _ideas[i] = idea + " nr" + std::to_string(i);
     }
-     return;
+    std::cout << ITALIC << PASTEL_CREAM << "🧠 Brain: default copy contructor called." << RESET << std::endl;
+    return;
 }
 
 Brain::Brain(const Brain& other)
@@ -46,10 +46,10 @@ Brain::~Brain()
     return;
 }
 
-void Brain::printIdeas()
+void Brain::printIdeas() const
 {
      for(int i = 0; i < 101; i++)
         { 
-            std::cout << ITALIC << PASTEL_CREAM << _ideas << RESET << std::endl;      
+            std::cout << ITALIC << PASTEL_CREAM << _ideas[i] << RESET << std::endl;      
         }
 }
