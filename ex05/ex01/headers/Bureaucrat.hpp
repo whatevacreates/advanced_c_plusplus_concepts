@@ -7,6 +7,7 @@
 class Bureaucrat
 {
     private:
+    const std::string _name;
     public:
     Bureaucrat();
     Bureaucrat(const Bureaucrat& other);

@@ -7,15 +7,17 @@
 class Brain
 {
     private:
-    std::string ideas[100];
+    std::string _ideas[100];
     
     public:
     Brain();
-    Brain(std::string type);
+    Brain(std::string idea);
     Brain(const Brain& others);
     Brain& operator=(const Brain& others);
     virtual ~Brain();
+
     
+    void printIdeas(); 
 };
 
 #endif

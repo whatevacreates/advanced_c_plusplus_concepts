@@ -12,7 +12,7 @@ Animal::Animal(std::string type):_type(type), _sound("Random animal sound.")
 
 Animal::~Animal()
 {
-    std::cout << PASTEL_LAVENDER << BOLD <<"𓃬  Animal destructor is called." << RESET <<std::endl;
+    std::cout << PASTEL_LAVENDER << BOLD << STRIKE <<"𓃬  Animal destructor is called." << RESET <<std::endl;
     return;
 }
 

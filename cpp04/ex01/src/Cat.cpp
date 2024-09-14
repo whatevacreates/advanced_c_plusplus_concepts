@@ -5,6 +5,7 @@
 Cat::Cat() : Animal()
 {
 	_type = "Cat";
+	_catBrain = new Brain();
 	std::cout << COLOR_FASHION_BLUE << "≽^•⩊•^≼ Cat default constructor called." << RESET << std::endl;
 	return ;
 }
@@ -18,7 +19,8 @@ Cat::Cat(std::string type)
 
 Cat::~Cat()
 {
-	std::cout << COLOR_FASHION_BLUE << "≽^•⩊•^≼ Cat destructor is called." << RESET << std::endl;
+	delete(_catBrain);
+	std::cout << COLOR_FASHION_BLUE << STRIKE << "≽^•⩊•^≼ Cat destructor is called." << RESET << std::endl;
 	return ;
 }
 

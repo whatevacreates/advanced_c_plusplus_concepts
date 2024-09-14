@@ -1,4 +1,4 @@
-NAME = animals
+NAME = brain
 
 CC = c++
 #CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -Iheaders
@@ -9,7 +9,8 @@ SRC = src/main.cpp \
 	src/Cat.cpp \
 	src/Dog.cpp \
 	src/WrongAnimal.cpp \
-	src/WrongCat.cpp
+	src/WrongCat.cpp \
+	src/Brain.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -58,8 +59,11 @@ all: $(NAME)
 	@printf "$(PINK)$(BOLD)To Launch the program type: ./$(shell echo $(NAME) | tr 'A-Z' 'a-z')$(RESET)\n\n"
 	@printf "$(PINK)Available commands:\n→ make all: Build the program\n→ make clean: Remove object files\n→ make fclean: Remove object files and executable\n→ make re: Clean and recompile everything$(RESET)\n\n"
 
+#$(NAME): $(OBJ)
+#@$(CC) $(OBJ) -o $(NAME) > /dev/null 2>&1
+
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $(NAME) > /dev/null 2>&1
+	@$(CC) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@ 

@@ -16,12 +16,23 @@ int		main(void)
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound(); //will output the cat sound!
 	j->makeSound(); //will output the dog sound!*/
-Brain brain;
-	meta->makeSound();
-	delete meta;
-	delete i;
-	delete j;
-	return (0);
+    Animal *array_animals[20];
+std::cout << BOLD << B_GREEN << "::::::::CREATING THE ARRAY OF ANIMAL OBJECTS::::::::" << RESET << std::endl;
+for(int i = 0; i < 10; i++)
+{
+array_animals[i] = new Cat();
+
+}
+for(int i = 10; i < 21; i ++)
+{
+    array_animals[i] = new Dog();
+}
+std::cout << BOLD << B_BLACK  << "::::::::DELETING THE ARRAY OF ANIMAL OBJECTS::::::::" << RESET << std::endl;
+
+	for(int i = 0; i < 21; i++)
+    {
+        delete(array_animals[i]);
+    }
 }
 
 

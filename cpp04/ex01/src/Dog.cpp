@@ -5,6 +5,7 @@
 Dog::Dog() : Animal()
 {
 	_type = "Dog";
+	_dogBrain = new Brain();
 	std::cout << PASTEL_BROWN << "🐶  Dog: default constructor called." << RESET << std::endl;
 	return ;
 }
@@ -28,7 +29,8 @@ Dog& Dog::operator=(const Dog& other)
 }
 Dog::~Dog()
 {
-	std::cout << PASTEL_BROWN << "🐶  Dog: destructor is called." << RESET << std::endl;
+	delete(_dogBrain);
+	std::cout << PASTEL_BROWN << STRIKE << "🐶  Dog: destructor is called." << RESET << std::endl;
 	return ;
 }
 
