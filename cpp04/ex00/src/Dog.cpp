@@ -15,16 +15,16 @@ Dog::Dog(std::string type) : Animal(type)
 	return ;
 }
 
-Dog::Dog(const Dog& other)
+Dog::Dog(const Dog &other)
 {
 	*this = other;
 }
 
-Dog& Dog::operator=(const Dog& other)
+Dog &Dog::operator=(const Dog &other)
 {
-	if(this != &other)
-	this->_type = other.getType();
-	return *this;
+	if (this != &other)
+		this->_type = other.getType();
+	return (*this);
 }
 Dog::~Dog()
 {

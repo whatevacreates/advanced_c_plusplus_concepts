@@ -18,20 +18,20 @@ Dog::Dog(std::string idea) : _dogIdea(idea)
 	return ;
 }
 
-Dog::Dog(const Dog& other)
+Dog::Dog(const Dog &other)
 {
 	*this = other;
 }
 
-Dog& Dog::operator=(const Dog& other)
+Dog &Dog::operator=(const Dog &other)
 {
-	if(this != &other)
-	this->_type = other._type;
-	return *this;
+	if (this != &other)
+		this->_type = other._type;
+	return (*this);
 }
 Dog::~Dog()
 {
-	delete(_dogBrain);
+	delete (_dogBrain);
 	std::cout << PASTEL_BROWN << STRIKE << "🐶  Dog: destructor is called." << RESET << std::endl;
 	return ;
 }
@@ -43,6 +43,6 @@ void Dog::makeSound(void) const
 
 void Dog::printIdeas() const
 {
-	if(_dogBrain)
-	_dogBrain->printIdeas();
+	if (_dogBrain)
+		_dogBrain->printIdeas();
 }

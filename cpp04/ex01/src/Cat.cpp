@@ -20,7 +20,7 @@ Cat::Cat(std::string idea)
 
 Cat::~Cat()
 {
-	delete(_catBrain);
+	delete (_catBrain);
 	std::cout << COLOR_FASHION_BLUE << STRIKE << "≽^•⩊•^≼ Cat destructor is called." << RESET << std::endl;
 	return ;
 }
@@ -30,19 +30,18 @@ void Cat::makeSound(void) const
 	std::cout << COLOR_FASHION_BLUE << "≽^•⩊•^≼ Little sweeeeet meow meow ... " << RESET << std::endl;
 }
 
-Cat::Cat(const Cat& other)
+Cat::Cat(const Cat &other)
 {
 	*this = other;
 }
 
-Cat& Cat::operator=(const Cat& other)
+Cat &Cat::operator=(const Cat &other)
 {
-	if(this != &other)
+	if (this != &other)
 	{
 		this->_type = other._type;
 	}
-
-	return *this;
+	return (*this);
 }
 
 void Cat::printIdeas() const

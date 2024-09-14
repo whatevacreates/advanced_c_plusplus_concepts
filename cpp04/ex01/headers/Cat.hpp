@@ -1,25 +1,25 @@
 
 #ifndef CAT_CPP
-#define CAT_CPP
+# define CAT_CPP
 
-#include <iostream>
-#include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
+# include "Animal.hpp"
+# include "Brain.hpp"
+# include <iostream>
+# include <string>
 
 class Cat : public Animal
 {
-    private:
-    std::string _catIdea;
-    Brain* _catBrain;
-    public:
-    Cat();
-    Cat(std::string type);
-    Cat(const Cat& other);
-    Cat& operator=(const Cat& other);
-    ~Cat();
-    void makeSound() const;
-    virtual void printIdeas() const;
-   
+  private:
+	std::string _catIdea;
+	Brain *_catBrain;
+
+  public:
+	Cat();
+	Cat(std::string type);
+	Cat(const Cat &other);
+	Cat &operator=(const Cat &other);
+	~Cat();
+	void makeSound() const;
+	virtual void printIdeas() const;
 };
 #endif

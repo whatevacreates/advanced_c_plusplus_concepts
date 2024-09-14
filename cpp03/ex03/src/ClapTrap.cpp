@@ -112,5 +112,5 @@ void ClapTrap::setName(std::string name)
 
 std::string ClapTrap::getName()
 {
-	return _name;
+	return (_name);
 }
