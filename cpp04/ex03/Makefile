@@ -5,12 +5,10 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -Iheaders -std=c++98
 
 SRC = src/main.cpp \
-	src/A_Animal.cpp \
-	src/Cat.cpp \
-	src/Dog.cpp \
-	src/WrongAnimal.cpp \
-	src/WrongCat.cpp \
-	src/Brain.cpp
+	src/AMateria.cpp \
+	src/Cure.cpp \
+	src/Ice.cpp \
+	src/Icharacter.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
