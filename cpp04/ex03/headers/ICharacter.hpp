@@ -6,7 +6,6 @@
 
 class ICharacter
 {
-    private:
     public:
     virtual ICharacter();
     virtual Character(const Character& other);

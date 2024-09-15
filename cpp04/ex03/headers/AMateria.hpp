@@ -21,3 +21,5 @@ class AMateria
     virtual AMateria* clone() const = 0;
     virtual void use(IChareacter& target);
 };
+
+#endif
