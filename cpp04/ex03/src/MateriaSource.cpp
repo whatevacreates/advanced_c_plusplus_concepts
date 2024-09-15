@@ -1,53 +1,77 @@
 #include "Utils.hpp"
-#include "Character.hpp"
+#include "MateriaSource.hpp"
 
-Character::Character():name(nullptr)
-{
-    std::cout <<PASTEL_MINT<<"Character: Default constructor called" << RESET << std::endl;
-    return;
-}
-
-Character::Character(std::string name):this.name(name)
-{
-    std::cout <<PASTEL_MINT<<"Character: Parameterized constructor called" << RESET << std::endl;
-     return;
-}
-
-Character::Character(const Character& other)
-{
-     std::cout <<PASTEL_MINT<<"Character: Default constructor called" << RESET << std::endl;
-     return *this;
-}
-
-Character& Character::operator(const Character& other)
-{
-    if(this != &other)
-    {
-        name = other.name;
-    }
-    return *this;
-}
-
-void Character::equip(AMateria* m)
+MateriaSource::MateriaSource()
 {
     for(int i = 0; i < 4; i++)
     {
-        if(!inventory[i])
+        templates[i] = nullptr;
+    }
+    std::cout <<PASTEL_SALMON << "MateriaSource: default constructor called." << RESET << std::endl;
+}
+
+MateriaSource::MateriaSource(const MateriaSource& other)
+{
+    for (int i = 0; i < 4; i++)
+    {
+        if(other.templates[i])
+        templates[i]= other.templates[i]->clone();
+        else
+        templates[i] = nullptr;
+    }
+     std::cout <<PASTEL_SALMON << "MateriaSource: copy constructor called." << RESET << std::endl;
+}
+
+MateriaSource& MateriaSource::operator=(const MateriaSource& other)
+{
+    if(this != &other)
+    {
+        for(int i = 0; i < 4; i++)
         {
-            inventory[i] = m;
+            if(other.templates[i])
+            templates[i] = other.templates[i]->clone();
+            else
+            templates[i] = nullptr;
+        }
+    }
+    std::cout <<PASTEL_SALMON << "MateriaSource: copy assignment operator called." << RESET << std::endl;
+    return *this;
+}
+
+MateriaSource::~MateriaSource()
+{
+    for(int i = 0; i < 4; i++)
+    {
+        if(templates[i])
+        delete templates[i];
+    }
+     std::cout <<PASTEL_SALMON << "MateriaSource: destructor called." << RESET << std::endl;
+}
+
+void MateriaSource::learnMateria(AMateria* m)
+{
+    for(int i = 0; i < 4; i++)
+    {
+        if(!templates[i])
+        {
+            templates[i] = m;
+            std::cout <<PASTEL_SALMON <<  "Materia learned " << m->getType() << RESET <<  std::endl;
             break;
         }
     }
+   std::cout <<PASTEL_SALMON << "MateriaSource: copy assignment operator called." << RESET << std::endl;
 }
 
-void Character::unequip(int idx)
+AMateria* MateriaSource::createMateria(std::string const &type)
 {
-    if(idx >= 0 && idx < 4)
-    inventory[idx] = nullptr;
-}
-
-void Character::use(int idx, ICharacter& target)
-{
-if(idx >= 0 && idx < 4 && inventory[idx])
-inventory[idx]->use(target);
+    for(int i = 0; i < 4; i++)
+    {
+        if(templates[i] && templates[i]->getType() == type)
+        {
+            std::cout  <<PASTEL_SALMON << "Creating Materia of type: " << type << RESET <<std::endl;
+            return templates[i]->clone();
+        }
+    }
+    std::cout  <<PASTEL_SALMON << "Unknown Materia type: " << type <<RESET << std::endl;
+    return nullptr;
 }

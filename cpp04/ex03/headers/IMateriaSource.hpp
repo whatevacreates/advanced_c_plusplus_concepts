@@ -9,7 +9,7 @@ class AMateria;
 class IMateriaSource
 {
     public:
-    virtual ~IMateriaDource();
+    virtual ~IMateriaSource(){};
     virtual void learnMateria(AMateria* m) = 0;
     virtual AMateria* createMateria(std::string const &type) = 0;
 

@@ -5,11 +5,12 @@
 #include <string>
 #include "AMateria.hpp"
 #include "Utils.hpp"
+#include "ICharacter.hpp"
 
 class Ice: public AMateria
 {
     private:
-    std::string _type;
+    std::string type;
     public:
     Ice();
     Ice(const Ice& other);
@@ -18,3 +19,5 @@ class Ice: public AMateria
     AMateria* clone() const;
     void use(ICharacter& target);
 };
+
+#endif

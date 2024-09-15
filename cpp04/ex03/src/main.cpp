@@ -3,6 +3,8 @@
 #include "Cure.hpp"
 #include "Ice.hpp"
 #include "Utils.hpp"
+#include "IMateriaSource.hpp"
+#include "MateriaSource.hpp"
 
 int	main(void)
 {

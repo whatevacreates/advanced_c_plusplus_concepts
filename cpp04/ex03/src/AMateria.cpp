@@ -13,25 +13,28 @@ AMateria::AMateria():type(nullptr)
 AMateria::AMateria(std::string const &type)
 {
     std::cout <<PASTEL_LIME<<"AMateria: Parameterized constructor called" << RESET << std::endl;
-    this.type = type;
+    this->type = type;
 }
 
 AMateria::AMateria(const AMateria& other)
 {
      std::cout <<PASTEL_LIME<<"AMateria: Copy constructor called" << RESET << std::endl;
+     if(this != &other)
+     this->type = other.type;
+}
+
+AMateria& AMateria::operator=(const AMateria& other)
+{
+    std::cout <<PASTEL_LIME<<"AMateria: Copy assignment operator called" << RESET << std::endl;
+    if(this != &other)
+    {
+      this->type = other.type;
+
+    }
     return *this;
 }
 
-AMateria& operator=(const AMateria& other)
-{
-    std::cout <<PASTEL_LIME<<"AMateria: Copy assignment operator called" << RESET << std::endl;
-    if(this != other)
-    {
-        delete(this);
-    }
-}
-
-std::string const &getType() const
+std::string const & AMateria::getType() const
 {
     return type;
 }

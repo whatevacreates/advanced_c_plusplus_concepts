@@ -8,7 +8,8 @@ SRC = src/main.cpp \
 	src/AMateria.cpp \
 	src/Cure.cpp \
 	src/Ice.cpp \
-	src/Icharacter.cpp
+	src/Character.cpp \
+	src/MateriaSource.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
