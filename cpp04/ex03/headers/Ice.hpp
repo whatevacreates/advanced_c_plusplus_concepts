@@ -9,8 +9,6 @@
 
 class Ice: public AMateria
 {
-    private:
-    std::string type;
     public:
     Ice();
     Ice(const Ice& other);

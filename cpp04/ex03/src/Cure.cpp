@@ -35,5 +35,10 @@ AMateria* Cure::clone() const
 
 void Cure::use(ICharacter& target)
 {
-    std::cout << PASTEL_SUN <<  "Cure: *heals " << target.getName() << "'s wounds *" <<  RESET <<std::endl;
+    std::cout << PASTEL_SUN << B_CYAN << "Cure: *heals " << target.getName() << "'s wounds *" <<  RESET <<std::endl;
+}
+
+Cure::~Cure()
+{
+ std::cout << PASTEL_SUN <<  "Cure: destructor called." << RESET <<std::endl;
 }

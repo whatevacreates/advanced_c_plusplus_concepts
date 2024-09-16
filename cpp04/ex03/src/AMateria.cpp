@@ -4,7 +4,7 @@
 #include "Ice.hpp"
 #include "Utils.hpp"
 
-AMateria::AMateria():type(nullptr)
+AMateria::AMateria():type("")
 {
     std::cout <<PASTEL_LIME<<"AMateria: Default constructor called" << RESET << std::endl;
     return;
@@ -25,7 +25,7 @@ AMateria::AMateria(const AMateria& other)
 
 AMateria& AMateria::operator=(const AMateria& other)
 {
-    std::cout <<PASTEL_LIME<<"AMateria: Copy assignment operator called" << RESET << std::endl;
+    std::cout << PASTEL_LIME<<"AMateria: Copy assignment operator called" << RESET << std::endl;
     if(this != &other)
     {
       this->type = other.type;
@@ -43,4 +43,10 @@ AMateria::~AMateria()
 {
     std::cout <<PASTEL_LIME<<"AMateria: Destructor called" << RESET << std::endl;
     return;
+}
+
+void AMateria::use(ICharacter &target)
+{
+    std::cout << "THIS SHOULD NOT BE CALLED-------------------------------" << std::endl;
+    std::cout << PASTEL_LIME <<  this->type << " used on " << target.getName() <<  RESET <<std::endl;
 }

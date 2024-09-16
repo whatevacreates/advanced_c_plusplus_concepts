@@ -15,6 +15,11 @@ Ice::Ice(const Ice& other): AMateria(other)
  std::cout << PASTEL_TURQUOISE <<  "Ice: copy constructor called." << RESET <<std::endl;
 }
 
+Ice::~Ice()
+{
+ std::cout << PASTEL_TURQUOISE <<  "Ice: destructor called." << RESET <<std::endl;
+}
+
 
 Ice& Ice::operator=(const Ice& other)
 {
@@ -29,12 +34,12 @@ Ice& Ice::operator=(const Ice& other)
 
 AMateria* Ice::clone() const
 {
-    std::cout << PASTEL_TURQUOISE <<  "Ice: calling clone, creating a deep copy." << RESET <<std::endl;
+    std::cout << PASTEL_TURQUOISE << "Ice: calling clone, creating a deep copy." << RESET <<std::endl;
     return new Ice(*this);
 
 }
 
 void Ice::use(ICharacter& target)
 {
-    std::cout << PASTEL_TURQUOISE <<  "Ice: *shoots an ice bolt at " << target.getName() << " *" <<  RESET <<std::endl;
+    std::cout << PASTEL_TURQUOISE << B_CYAN << "Ice: *shoots an ice bolt at " << target.getName() << " *" <<  RESET <<std::endl;
 }

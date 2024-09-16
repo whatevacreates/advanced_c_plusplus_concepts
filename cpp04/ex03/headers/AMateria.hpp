@@ -18,7 +18,7 @@ class AMateria
     AMateria(std::string const & type);
     virtual ~AMateria();
     std::string const & getType() const; //return the  materia type
-    virtual void use(ICharacter& target) = 0;
+    virtual void use(ICharacter& target);
     virtual AMateria *clone() const = 0;
 };
 
