@@ -1,16 +1,12 @@
-NAME = animals
+NAME = b
 
 CC = c++
 #CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -Iheaders
 CFLAGS = -Wall -Wextra -Werror -g -Iheaders -std=c++98
 
 SRC = src/main.cpp \
-	src/Animal.cpp \
-	src/Cat.cpp \
-	src/Dog.cpp \
-	src/WrongAnimal.cpp \
-	src/WrongCat.cpp \
-	src/Brain.cpp
+	src/Bureaucrat.cpp \
+	src/Form.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
