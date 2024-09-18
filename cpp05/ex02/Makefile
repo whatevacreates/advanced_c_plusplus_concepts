@@ -7,7 +7,9 @@ CFLAGS = -Wall -Wextra -Werror -g -Iheaders -std=c++98
 SRC = src/main.cpp \
 	src/Bureaucrat.cpp \
 	src/AForm.cpp \
-	src/ShrubberyCreationForm.cpp
+	src/ShrubberyCreationForm.cpp \
+	src/PresidentialPardonForm.cpp \
+	src/RobotomyRequestForm.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
