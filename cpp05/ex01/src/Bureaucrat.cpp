@@ -11,7 +11,6 @@ Bureaucrat::Bureaucrat()
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
-std::cout << " parameterized contructor called " << _grade << std::endl;
       if (grade < MAX_GRADE) {
             throw Bureaucrat::GradeTooHighException();
         }
@@ -49,7 +48,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
        
         if(other._grade > MIN_GRADE)
         throw Bureaucrat::GradeTooLowException();
-         _grade = other._grade;
     }
     return *this;
 }
@@ -66,14 +64,14 @@ std::string Bureaucrat::getName() const
 
 void Bureaucrat::decrementGrade()
 {
-    if(_grade >= MAX_GRADE)
+    if(_grade >= MIN_GRADE)
     throw Bureaucrat::GradeTooLowException();
     _grade++;
 }
 
 void Bureaucrat::incrementGrade()
 {
-    if(_grade <= MIN_GRADE)
+    if(_grade <= MAX_GRADE)
     throw Bureaucrat::GradeTooHighException();
     _grade--;
 }
@@ -90,14 +88,13 @@ std::ostream& operator<<(std::ostream &out, Bureaucrat const& src)
 
 void Bureaucrat::signForm(Form const &form) const
 {
- 
-    if(form.getGrade() < MAX_GRADE)
+    if(getGrade() < MAX_GRADE)
     throw GradeTooHighException();
-    if(form.getGrade() > MIN_GRADE)
+    if(getGrade() > MIN_GRADE)
     throw GradeTooLowException();
 
     if(form.getIsSigned())
-    std::cout << _name << " signed " << form.getName() << std::endl;
+    std::cout << UNDERLINE << BOLD << _name << " signed " << form.getName() << RESET << std::endl;
     else
-    std::cout << _name << "couldn't sign " << form.getName() << " because the grade is too low." << std::endl;
+    std::cout << UNDERLINE << BOLD << _name << " couldn't sign " << form.getName() << " because the grade is too low." << RESET << std::endl;
 }

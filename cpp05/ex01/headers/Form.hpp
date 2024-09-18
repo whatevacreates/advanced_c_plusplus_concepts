@@ -14,23 +14,25 @@ class Form
     private:
     const std::string _name;
     bool _isSigned;
-    const int _grade;
+    const int _gradeReq;
+    const int _gradeExecute;
     public:
     Form();
-    Form(bool isSigned, int grade, const std::string name);
+    Form(const std::string name);
     Form(const Form& other);
     Form& operator=(const Form& oother);
     ~Form();
     std::string getName() const;
     bool getIsSigned() const;
-    int getGrade() const;
+    int getGradeReq() const;
+    int getGradeExecute() const;
     void beSigned(const Bureaucrat& src);
     class GradeTooHighException : public std::exception
     {
         public:
         const char *what() const throw()
         {
-             return "Grade is too high";
+             return "Exception thrown::: Grade is too high";
         }
        
     };
@@ -38,7 +40,7 @@ class Form
     {
         const char *what() const throw()
         {
-            return "Grade is too high";
+            return "Exception thrown::: Grade is too high";
         }
     };
 };

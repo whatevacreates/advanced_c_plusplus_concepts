@@ -2,23 +2,22 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form():_name(""),_isSigned(false),_grade(0)
+Form::Form():_name(""),_isSigned(false),_gradeReq(20), _gradeExecute(110)
 {
     return;
 }
 
-Form::Form(bool isSigned, int grade, const std::string name):_name(name),_isSigned(isSigned), _grade(grade)
+Form::Form(const std::string name):_name(name),_isSigned(false), _gradeReq(20), _gradeExecute(110)
 {
-    if(_grade < MAX_GRADE)
+    if(_gradeReq < MAX_GRADE || _gradeExecute < MAX_GRADE)
     throw Form::GradeTooHighException();
-    if(_grade > MIN_GRADE)
+    if(_gradeReq > MIN_GRADE || _gradeExecute > MIN_GRADE)
     throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form& other)
-    : _name(other._name), _isSigned(other._isSigned), _grade(other._grade)
+    : _name(other._name), _isSigned(other._isSigned), _gradeReq(other._gradeReq), _gradeExecute(other._gradeExecute)
 {
-    std::cout << "Form copy constructor called." << std::endl;
 }
 
 Form& Form::operator=(const Form& other)
@@ -40,9 +39,15 @@ bool Form::getIsSigned() const
     return _isSigned;
 }
 
-int Form::getGrade() const
+int Form::getGradeReq() const
 {
-    return _grade;
+    return _gradeReq;
+}
+
+
+int Form::getGradeExecute() const
+{
+    return _gradeExecute;
 }
 
 std::string Form::getName() const
@@ -58,7 +63,8 @@ std::ostream& operator<<(std::ostream &out, Form const &src)
     printSigned = "is signed";
     else
     printSigned = "not signed";
-    return out << src.getName() << " has grade: " << src.getGrade() << " and the form is " << printSigned << std::endl;
+    return out << src.getName() << ", required grade: " << src.getGradeReq() << 
+    " , execute grade: " << src.getGradeExecute() << " and the form is currently: " << printSigned << std::endl;
 }
 
  void Form::beSigned(const Bureaucrat& src)
@@ -67,8 +73,7 @@ std::ostream& operator<<(std::ostream &out, Form const &src)
         throw Form::GradeTooHighException();
         if(src.getGrade() > MIN_GRADE)
         throw Form::GradeTooLowException();
-
-    if(src.getGrade() <= 20)
+    if(src.getGrade() <= _gradeReq)
     _isSigned = true;
 
     src.signForm(*this);
