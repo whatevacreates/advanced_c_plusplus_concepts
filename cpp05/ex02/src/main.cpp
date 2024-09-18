@@ -1,20 +1,17 @@
 #include "Utils.hpp"
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 void createBureaucrats(std::string name, int grade, std::string form_name)
 {
-    Form f(form_name);
-    Bureaucrat b(name, grade);
-    std::cout << BOLD << PASTEL_LIME << "Before: " << b << RESET << std::endl;
-    b.incrementGrade();
-    b.incrementGrade();
-    b.incrementGrade();
-    b.decrementGrade();
-    b.decrementGrade();
-    std::cout << BOLD << PASTEL_LIME << "After: "<< b << RESET << std::endl;
-    std::cout << BOLD << PASTEL_MINT << "Form:  " << f << RESET << std::endl;
+    ShrubberyCreationForm  f(form_name);
+    Bureaucrat b(name, grade); 
     f.beSigned(b);
+    f.execute(b);
+    std::cout << BOLD << PASTEL_LIME << "Bureaucrat: " << b << RESET << std::endl;
+  std::cout << BOLD << PASTEL_MINT << "AForm:  " << f << RESET << std::endl;
+  
 
 }
 
@@ -32,19 +29,24 @@ void runTests(std::string name, int grade, std::string form_name)
         }
 }
 
+
+      
 int main(void)
 {
     std::cout << B_ROSE << "::::::::::::::::::::TEST 1::::::::::::::::::::" << RESET << std::endl;
-   
-    runTests("good_signed", 5, "form_1");
+     std::cout << std::endl;
+    runTests("Bureaucrat1", 5, "garden");
      std::cout <<  B_ROSE << "::::::::::::::::::::TEST 2::::::::::::::::::::" << RESET << std::endl;
-    runTests("too_high", -10, "form_2");
+      std::cout << std::endl;
+    runTests("Bureaucrat2", -10, "house");
      std::cout <<  B_ROSE << "::::::::::::::::::::TEST 3::::::::::::::::::::" << RESET << std::endl;
-    runTests("too_high_for_increment", 2, "form_3");
+      std::cout << std::endl;
+    runTests("Bureaucrat3", 2, "cocobush");
      std::cout <<  B_ROSE << "::::::::::::::::::::TEST 4::::::::::::::::::::" << RESET << std::endl;
-    runTests("too_low", 199, "form_4");
+      std::cout << std::endl;
+    runTests("Bureaucrat4", 199, "pool");
      std::cout <<  B_ROSE << "::::::::::::::::::::TEST 5::::::::::::::::::::" << RESET << std::endl;
-    runTests("good_not_signed", 30, "form_5");
+      std::cout << std::endl;
+    runTests("Bureaucrat5", 30, "greenery");
 }
-      
 

@@ -1,4 +1,4 @@
-NAME = form
+NAME = b
 
 CC = c++
 #CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -Iheaders
@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror -g -Iheaders -std=c++98
 
 SRC = src/main.cpp \
 	src/Bureaucrat.cpp \
-	src/Form.cpp
+	src/AForm.cpp \
+	src/ShrubberyCreationForm.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -55,9 +56,10 @@ all: $(NAME)
 	@printf "$(PINK)$(BOLD)To Launch the program type: ./$(shell echo $(NAME) | tr 'A-Z' 'a-z')$(RESET)\n\n"
 	@printf "$(PINK)Available commands:\n→ make all: Build the program\n→ make clean: Remove object files\n→ make fclean: Remove object files and executable\n→ make re: Clean and recompile everything$(RESET)\n\n"
 
+#$(NAME): $(OBJ)
+#@$(CC) $(OBJ) -o $(NAME) > /dev/null 2>&1
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $(NAME) > /dev/null 2>&1
-
+	@$(CC) $(OBJ) -o $(NAME)
 %.o: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@ 
 
