@@ -21,6 +21,7 @@ private:
     static int toInt(const std::string &literal);   
     static float toFloat(const std::string &literal); 
     static double toDouble(const std::string &literal); 
+    static bool checkNumber(const std::string &literal, const std::string &scalar_type);
 
 public:
    
