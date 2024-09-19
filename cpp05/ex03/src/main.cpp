@@ -33,7 +33,7 @@ void runTests(std::string form_name)
     {
       std::cerr << e.what() << " Wrong name: " << form_name << std::endl;
     }
-   
+   //////check leaks maybe you have to delete something
 }
 
       
