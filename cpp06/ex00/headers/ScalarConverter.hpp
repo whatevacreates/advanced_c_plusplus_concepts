@@ -1,31 +1,30 @@
 #ifndef SCALARCONVERTER_HPP
-#define SCALARCONVERTER_HPP
+# define SCALARCONVERTER_HPP
 
-#include <string>
-#include <cmath>
-#include <iostream>
-#include <cstdlib> 
-#include <iomanip> 
+# include <cmath>
+# include <cstdlib>
+# include <iomanip>
+# include <iostream>
+# include <string>
 
-class ScalarConverter 
+class ScalarConverter
 {
-private:
-    
-    ScalarConverter();
-    ~ScalarConverter();
-  
-    ScalarConverter(const ScalarConverter &other);
-    ScalarConverter& operator=(const ScalarConverter &other);
+  private:
+	ScalarConverter();
+	~ScalarConverter();
 
-    static void toChar(const std::string &literal);
-    static void toInt(const std::string &literal);   
-    static void toFloat(const std::string &literal); 
-    static void toDouble(const std::string &literal); 
-    static bool checkNumber(const std::string &literal, const std::string &scalar_type);
+	ScalarConverter(const ScalarConverter &other);
+	ScalarConverter &operator=(const ScalarConverter &other);
 
-public:
-   
-    static void convert(const std::string &literal);
+	static void toChar(const std::string &literal);
+	static void toInt(const std::string &literal);
+	static void toFloat(const std::string &literal);
+	static void toDouble(const std::string &literal);
+	static bool checkNumber(const std::string &literal,
+		const std::string &scalar_type);
+
+  public:
+	static void convert(const std::string &literal);
 };
 
 #endif
