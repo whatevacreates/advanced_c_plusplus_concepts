@@ -17,10 +17,10 @@ private:
     ScalarConverter(const ScalarConverter &other);
     ScalarConverter& operator=(const ScalarConverter &other);
 
-    static char toChar(const std::string &literal);
-    static int toInt(const std::string &literal);   
-    static float toFloat(const std::string &literal); 
-    static double toDouble(const std::string &literal); 
+    static void toChar(const std::string &literal);
+    static void toInt(const std::string &literal);   
+    static void toFloat(const std::string &literal); 
+    static void toDouble(const std::string &literal); 
     static bool checkNumber(const std::string &literal, const std::string &scalar_type);
 
 public:
