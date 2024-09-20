@@ -32,6 +32,7 @@ void ScalarConverter::toChar(const std::string &literal)
 	}
 	std::cout << "char: impossible" << std::endl;
 }
+
 bool ScalarConverter::checkNumber(const std::string &literal,
 	const std::string &scalar_type)
 {
@@ -76,7 +77,7 @@ bool ScalarConverter::checkNumber(const std::string &literal,
 void ScalarConverter::toInt(const std::string &literal)
 {
 	int	value;
-
+	
 	if (!checkNumber(literal, "int"))
 		return ;
 	try
@@ -96,7 +97,7 @@ void ScalarConverter::toInt(const std::string &literal)
 void ScalarConverter::toFloat(const std::string &literal)
 {
 	float	value;
-
+	
 	if (!checkNumber(literal, "float"))
 		return ;
 	try
