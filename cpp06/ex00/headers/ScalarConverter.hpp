@@ -6,6 +6,7 @@
 # include <iomanip>
 # include <iostream>
 # include <string>
+# include <climits>
 
 class ScalarConverter
 {
@@ -20,8 +21,7 @@ class ScalarConverter
 	static void toInt(const std::string &literal);
 	static void toFloat(const std::string &literal);
 	static void toDouble(const std::string &literal);
-	static bool checkNumber(const std::string &literal,
-		const std::string &scalar_type);
+    static void checkPrecision(const std::string literal, int &precision);
 
   public:
 	static void convert(const std::string &literal);
