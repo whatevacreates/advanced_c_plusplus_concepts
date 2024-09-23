@@ -72,18 +72,20 @@ std::cout << "Object is of type C" << std::endl;
 
 
 
-int main()
-{ 
-    Base* test;
+int main() { 
     srand(time(0));
-    for (int i = 1; i < 11; i++)
-    {   
-    std::cout << B_ROSE << BOLD << "::::::::::::::::::::::::::::::::::::::::"<<"TEST "<<i<<"::::::::::::::::::::::::::::::::::::::::" << RESET << std::endl;
-    test = generate();
-    identify(*test);
-    identify(test);
-    std::cout <<std::endl;
+    for (int i = 1; i <= 10; i++) {   
+        std::cout << B_ROSE << BOLD << "::::::::::::::::::::::::::::::::::::::::" << "TEST " << i << "::::::::::::::::::::::::::::::::::::::::" << RESET << std::endl;
+        
+        Base* test = generate(); 
+
+        identify(*test); 
+        identify(test);  
+
+        delete test; 
+
+        std::cout << std::endl;
     }
-    delete(test);
-    
+
+    return 0;
 }
