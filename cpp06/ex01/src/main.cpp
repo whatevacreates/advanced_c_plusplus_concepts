@@ -41,4 +41,5 @@ std::cout  << BOLD << PASTEL_LIME  << "age: " << RESET << person->age << std::en
 std::cout << BOLD << PASTEL_LIME  <<"vegetarian: " << RESET << (person->isVegetarian ? "yes" : "no") <<std::endl;
 std::cout << BOLD << PASTEL_LIME  << "special requests: " << RESET << person->specialRequests[0] << ", " << person->specialRequests[1] << RESET << std::endl;
 }
+delete(person);
 }

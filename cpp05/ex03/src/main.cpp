@@ -11,11 +11,12 @@ void runTests(std::string form_name)
 {
   Intern intern;
     AForm* form;
-    
+    (void)form;
     try
     {
     form = intern.makeForm(form_name, "pool");
     std::cout << "All forms successfully created." <<std::endl;
+    delete(form);
     } catch(const Bureaucrat::GradeTooHighException &e)
     {
       std::cerr << e.what() << std::endl;
