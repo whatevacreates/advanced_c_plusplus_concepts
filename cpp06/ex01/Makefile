@@ -1,13 +1,11 @@
-NAME = diamond
+NAME = serializer
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheaders -MMD -MP
+#CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -Iheaders
+CFLAGS = -Wall -Wextra -Werror -g -Iheaders -std=c++98
 
 SRC = src/main.cpp \
-	src/FragTrap.cpp \
-	src/ClapTrap.cpp \
-	src/ScavTrap.cpp \
-	src/DiamondTrap.cpp
+	src/Serializer.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -36,13 +34,13 @@ INFO_MSG = "Available commands:\n- all: Build the program\n- clean: Remove objec
 .PHONY: all clean fclean re
 
 all: $(NAME)
-	@printf "$(PASTEL_GREEN)$(BOLD)\n\n★ The executable diamond was successfully compiled® ★\n\n$(RESET)"
+	@printf "$(PASTEL_GREEN)$(BOLD)\n\n★ The executable $(shell echo $(NAME) | tr 'A-Z' 'a-z') was successfully compiled® ★\n\n$(RESET)"
 	@printf " _\n"
 	@printf "| |\n"
 	@printf "| |===( )  //////\n"
 	@printf "|_|  |||  | o o|\n"
 	@printf "     |||  ( c  )                    ____\n"
-	@printf "       ||| \\\\= /                   ||    \\\\_\n"
+	@printf "       ||| \\\\o /                   ||    \\\\_\n"
 	@printf "       ||||||                     ||     |\n"
 	@printf "       ||||||                  ...||__/|-\"\n"
 	@printf "       ||||||             __|__________|__\n"
@@ -53,15 +51,17 @@ all: $(NAME)
 	@printf "         |__>            || ||      || ||\n"
 	@printf "\n"
 	@printf "     hit any key to continue シ \n\n"
-	@printf "$(PINK)To Launch the program type: ./diamond$(RESET)\n\n"
+	@printf "$(PINK)$(BOLD)To Launch the program type: ./$(shell echo $(NAME) | tr 'A-Z' 'a-z')$(RESET)\n\n"
 	@printf "$(PINK)Available commands:\n→ make all: Build the program\n→ make clean: Remove object files\n→ make fclean: Remove object files and executable\n→ make re: Clean and recompile everything$(RESET)\n\n"
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME) > /dev/null 2>&1
 
-
 %.o: %.cpp
-	@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null 2>&1
+	@$(CC) $(CFLAGS) -c $< -o $@ 
+
+#%.o: %.cpp
+#@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null 2>&1
 
 clean:
 	@rm -f $(OBJ)
@@ -69,7 +69,6 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME) 
-	@printf "$(PASTEL_GREEN)✔ Executable $(NAME) cleaned.$(RESET)"
+	@printf "$(PASTEL_GREEN)✔ Executable: $(NAME), cleaned.$(RESET)\n\n"
 
 re: fclean all
-	@printf "$(PASTEL_GREEN)✔ Recompiled $(NAME).$(RESET)\n\n"
