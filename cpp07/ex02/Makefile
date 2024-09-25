@@ -1,4 +1,4 @@
-NAME = whatever
+NAME = array
 
 CC = c++
 #CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -Iheaders
@@ -58,6 +58,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME)
+
 
 %.o: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@ 
