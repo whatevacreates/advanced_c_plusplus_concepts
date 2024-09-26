@@ -1,30 +1,33 @@
-#ifndef ARRAY_TPP
-#define ARRAY_TPP
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
 
-#include <stdexcept>
-#include <exception>
-#include <iostream>
+# include <exception>
+# include <iostream>
+# include <string>
 
-template<typename T>
-class Array
+template <typename T> class Array
 {
-    private:
-    unsigned int _n;
-    T *_arrayOfElements;
+  private:
+	unsigned int _len;
+	T *_arrayElem;
 
-    public:
-    Array();
-
-    Array(unsigned int n);
-    Array(const Array& other);
-    Array& operator=(const Array& other);
-
-    ~Array();
-    T& operator[](unsigned int index);
-    unsigned int size() const;
-
+  public:
+	Array();
+	Array(unsigned int len);
+    Array(const Array &other);
+	Array<T>& operator=(const Array &other);
+	T& operator[](unsigned int index) const;
+	~Array();
+	class arrayExceptions : public std::exception
+	{
+		public:
+		const char* what() const _NOEXCEPT
+		{
+			return "Throwing a fancy customised OUT OF BOUNDS exception::::..";
+		}
+	};
+	unsigned int getSize() const;
 };
 
-#include "Array.tpp"
-
-#endif
+# include "Array.tpp"
+#endif 

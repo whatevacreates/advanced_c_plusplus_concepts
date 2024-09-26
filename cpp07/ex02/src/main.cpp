@@ -1,119 +1,89 @@
 
 #include "Array.hpp"
 
-
-
-
-
-
-
-
-
-
-
-
-#include "Array.hpp"
-
-void testBasicOperations() {
-    std::cout << "==== Test 1: Basic Operations ====" << std::endl;
-    
-    Array<int> intArray(5); // Create an array of 5 integers
-    for (unsigned int i = 0; i < intArray.size(); i++) {
-        intArray[i] = i * 10; // Assign values 0, 10, 20, 30, 40
-    }
-
-    for (unsigned int i = 0; i < intArray.size(); i++) {
-        std::cout << "intArray[" << i << "] = " << intArray[i] << std::endl; // Print the values
-    }
-
-    std::cout << "Array size: " << intArray.size() << std::endl; // Verify size
-    std::cout << std::endl;
+void	runBasic(void)
+{
+	Array<float> *basicArray = new Array<float>(3);
+	for (int i = 0; i < 3; i++)
+	{
+		(*basicArray)[i] = i * 1.32;
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << (*basicArray)[i] << std::endl;
+	}
+	delete (basicArray);
 }
 
-
-
-
-
-
-void testCopyAndAssignment() {
-    std::cout << "==== Test 2: Copy Constructor and Assignment Operator ====" << std::endl;
-
-    Array<int> array1(3);
-    array1[0] = 1;
-    array1[1] = 2;
-    array1[2] = 3;
-
-    Array<int> array2 = array1; // Copy constructor
-    Array<int> array3(5);
-    array3 = array1; // Assignment operator
-
-    // Modify array1 to check for deep copy
-    array1[0] = 100;
-
-    std::cout << "Original array1: ";
-    for (unsigned int i = 0; i < array1.size(); i++) {
-        std::cout << array1[i] << " ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "Copied array2: ";
-    for (unsigned int i = 0; i < array2.size(); i++) {
-        std::cout << array2[i] << " ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "Assigned array3: ";
-    for (unsigned int i = 0; i < array3.size(); i++) {
-        std::cout << array3[i] << " ";
-    }
-    std::cout << "csefsefes" << std::endl;
-    std::cout << std::endl;
-
-    std::cout << std::endl;
+void	runCopyAssignmentOperator(void)
+{
+	Array<std::string> *strArray1 = new Array<std::string>(3);
+	Array<std::string> *strArray2 = new Array<std::string>();
+	for (int i = 0; i < 3; i++)
+	{
+		(*strArray1)[i] = "Element" + std::to_string(i);
+	}
+	*strArray2 = *strArray1;
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << "strArray2 element: " << i << ": " << (*strArray2)[i] << std::endl;
+	}
+	std::cout << "-------------- modifying first element of the original array --------------" << std::endl;
+	(*strArray1)[0] = "ELEMENT CHANGED";
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << "strArray1 element: " << i << ": " << (*strArray1)[i] << std::endl;
+		std::cout << "strArray2 element: " << i << ": " << (*strArray2)[i] << std::endl;
+	}
+	std::cout << "Testing an out of bounds index for the Array:" <<std::endl;
+	try
+	{
+		std::cout << (*strArray1)[-302043242] << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
+	delete (strArray1);
+	delete (strArray2);
 }
 
+void	runOutOfBands(void)
+{
+	int	size;
 
-
-
-
-
-
-
-
-
-void testOutOfBounds() {
-    std::cout << "==== Test 3: Out-of-Bounds Access ====" << std::endl;
-    
-    Array<int> intArray(5);
-    for (unsigned int i = 0; i < intArray.size(); i++) {
-        intArray[i] = i * 2; // Assign values
-    }
-
-    try {
-        std::cout << intArray[10] << std::endl; // Out-of-bounds access
-    }
-    catch (const std::out_of_range& e) {
-    }
-
-    try {
-        std::cout << intArray[-1] << std::endl; // Out-of-bounds access
-    }
-    catch (const std::out_of_range& e) {
-        std::cerr << "Caught exception: " << e.what() << std::endl;
-    }
-
-    std::cout << std::endl;
+	size = 10;
+	Array<bool> *boolArray = new Array<bool>(size);
+	for (int i = 0; i < size; i++)
+	{
+		(*boolArray)[i] = (i % 2 == 0);
+	}
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << ((*boolArray)[i] % 2 ? "true" : "false") << std::endl;
+	}
+	try
+	{
+		std::cout << "Testing an out of bounds index for the Array:" <<std::endl;
+		std::cout << (*boolArray)[size + 10] << std::endl;
+	}
+	
+	catch (std::exception &e)
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
+	delete (boolArray);
 }
 
-
-
-
-
-
-int main() {
-    testBasicOperations();   // Test 1: Basic operations
-    testCopyAndAssignment(); // Test 2: Copy constructor and assignment operator
-    testOutOfBounds();       // Test 3: Out-of-bounds access
-
-    return 0;
+int	main(void)
+{
+	std::cout << "::::::::::::::::::::::::::::::::::::::::::::::: BASIC TEST | FLOAT ::::::::::::::::::::::::::::::::::::::::::::::::" << std::endl;
+	runBasic();
+	std::cout << std::endl;
+	std::cout << ":::::::::::::::::::::::::::::::::::::: COPY ASSIGNMENT OPERATOR TEST | STD::STRING ::::::::::::::::::::::::::::::::::::::" << std::endl;
+	runCopyAssignmentOperator();
+	std::cout << std::endl;
+	std::cout << ":::::::::::::::::::::::::::::::::::::::::::: OUT OF BOUNDS TEST | BOOL ::::::::::::::::::::::::::::::::::::::::::::" << std::endl;
+	runOutOfBands();
+	std::cout << std::endl;
 }
