@@ -3,21 +3,9 @@
 #include <vector>
 #include <string>
 #include "Utils.hpp"
-#include "Easyfind.hpp"
+#include "EasyFind.hpp"
 
 
-template<typename T>
-typename T::const_iterator easyfind(const T& container, int value)
-{
-
-    typename T::const_iterator it;
-    it = find(container.begin(), container.end(), value);
-    if(it == container.end())
-    {
-        throw std::runtime_error("Element not found");
-    }
-    return it;
-}
 
 int main()
 {
