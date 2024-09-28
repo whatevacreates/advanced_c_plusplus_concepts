@@ -1,4 +1,4 @@
-NAME = test
+NAME = easyfind
 
 CC = c++
 #CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -Iheaders
