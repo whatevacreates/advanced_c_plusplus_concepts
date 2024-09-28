@@ -8,6 +8,6 @@
 #include <exception> 
 
 template<typename T>
-T& easyfind(T a, int b);
+typename T::iterator easyfind(T a, int b);
 
 #endif

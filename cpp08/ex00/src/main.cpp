@@ -7,15 +7,15 @@
 
 
 template<typename T>
-T& easyfind(T a, int b)
+typename T::iterator easyfind(T a, int b)
 {
 
     typename T::iterator i;
-    for(i = a.begin(); a.begin() != a.end(); ++i) 
+    for(i = a.begin(); i != a.end(); ++i) 
     {
         if(*i == b)
         {
-            std::cout << i << " is equal: " << b << std::endl;
+            std::cout << *i << " is equal: " << b << std::endl;
             return i;
         }
         
@@ -31,7 +31,7 @@ int main()
     int length = sizeof(array[0]/sizeof(array));
     std::vector<int> vectorInt;
     vectorInt.assign(array, array + length);
-    int b = 4;
+    int b = 90;
     try
     {
         easyfind(vectorInt, b);
