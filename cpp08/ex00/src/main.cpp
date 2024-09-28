@@ -7,22 +7,16 @@
 
 
 template<typename T>
-typename T::iterator easyfind(T a, int b)
+typename T::const_iterator easyfind(const T& container, int value)
 {
 
-    typename T::iterator i;
-    for(i = a.begin(); i != a.end(); ++i) 
+    typename T::iterator it;
+    it = find(container.begin(), container.end(), value);
+    if(it == container.end())
     {
-        if(*i == b)
-        {
-            std::cout << *i << " is equal: " << b << std::endl;
-            return i;
-        }
-        
+        throw std::runtime_error("Element not found");
     }
-    throw std::runtime_error("Element not found");
-
-return i;
+    return it;
 }
 
 int main()
