@@ -15,14 +15,20 @@ void Sed::checks()
 	try
 	{
 		oldFile.open(oldFileName, std::ios::in);
+		if (s1.empty())
+		{
+			oldFile.close();
+			throw "s1 cannot be an empty string";
+		}
 		if (!oldFile.good())
+		{
+			oldFile.close();
 			throw "cannot open a file";
-		oldFile.close();
+		}
 	}
 	catch (const char *errMsg)
 	{
 		std::cerr << "Error2: " << errMsg << std::endl;
-		oldFile.close();
 		std::exit(1);
 	}
 }
@@ -30,6 +36,11 @@ void Sed::checks()
 void Sed::createNewFile(void)
 {
 	newFile.open(std::string(oldFileName + ".replace").c_str(), std::ios::out);
+	if (!newFile.good())
+	{
+		std::cerr << "Error: Cannot create the new file." << std::endl;
+		std::exit(1);
+	}
 	createNewFileContent();
 }
 
@@ -37,7 +48,6 @@ void Sed::createNewFileContent()
 {
 	size_t	pos;
 
-	oldFile.open(oldFileName, std::ios::in);
 	while (std::getline(oldFile, line))
 	{
 		while ((pos = line.find(s1)) != std::string::npos)

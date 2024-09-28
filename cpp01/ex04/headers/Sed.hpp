@@ -11,19 +11,18 @@ class Sed
   public:
 	Sed(char *argv[]);
 	~Sed();
-    void checks();
-    void createNewFile();
+	void checks();
+	void createNewFile();
 
   private:
 	std::string oldFileName;
-    std::string newFileName;
+	std::string newFileName;
 	std::ifstream oldFile;
 	std::ofstream newFile;
 	std::string s1;
 	std::string s2;
-    std::string line;
-    void createNewFileContent();
-	
+	std::string line;
+	void createNewFileContent();
 };
 
 #endif

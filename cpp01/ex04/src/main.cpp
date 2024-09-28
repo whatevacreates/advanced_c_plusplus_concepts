@@ -2,13 +2,13 @@
 
 int	main(int argc, char *argv[])
 {
-    Sed sed(argv);
 	if (argc != 4)
 	{
-		std::cout << "Number of parameters must be 3:";
-		std::cout << "a filename, a string and a string. " << std::endl;
-		std::exit(1);
+		std::cerr << "Error: Number of parameters must be 3 (filename, s1, "
+			 "s2)." << std::endl;
+		return (1);
 	}
+	Sed sed(argv);
 	sed.checks();
-    sed.createNewFile();
+	sed.createNewFile();
 }
