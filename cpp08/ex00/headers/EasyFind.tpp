@@ -1,22 +1,34 @@
 
 #include "EasyFind.hpp"
+#include "Utils.hpp"
 
-template<typename T>
-typename T::const_iterator easyfind(const T& container, int value)
+template <typename T> typename T::const_iterator easyfind(const T &container,
+	int value)
 {
-
-    typename T::const_iterator it;
-    it = find(container.begin(), container.end(), value);
-    if(it == container.end())
-    {
-        throw std::runtime_error("Element not found");
-    }
-    return it;
+	typename T::const_iterator it;
+	it = find(container.begin(), container.end(), value);
+	if (it == container.end())
+	{
+		throw customException();
+	}
+	else
+	{
+		std::cout << BOLD << BRIGHT_GREEN << "::::::::::::::::::::::::::::::: Yay, "
+			"Element Found! :::::::::::::::::::::::::::::::" << RESET << std::endl;
+	}
+	return (it);
 }
 
-template<typename T>
-void easyfind(const T&, int value)
+template <typename T, size_t N> int *easyfind(T (&array)[N], int value)
 {
-    (void)value;
-    throw std::runtime_error("Not supported frormat");
+	for (size_t i = 0; i < N; ++i)
+	{
+		if (array[i] == value)
+		{
+			std::cout << BOLD << B_PASTEL_GREEN << "::::::::::::::::::::::::::::::: Yay, "
+				"Element Found! :::::::::::::::::::::::::::::::" << RESET << std::endl;
+			return (&array[i]);
+		}
+	}
+	throw customException();
 }
