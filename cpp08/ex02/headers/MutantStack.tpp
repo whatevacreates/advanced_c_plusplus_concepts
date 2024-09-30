@@ -1,15 +1,15 @@
 #include "MutantStack.hpp"
 
 template<typename T>
-MutantStack::MutantStack(): std::stack<T>()
+MutantStack<T>::MutantStack(): std::stack<T>()
 {}
 
 template<typename T>
-MutantStack::MutantStack(const MutantStack& other): std::stack<T>(other)
+MutantStack<T>::MutantStack(const MutantStack<T>& other): std::stack<T>(other)
 {}
 
 template<typename T>
-MutantStack& MutantStack::operator=(const MutantStack& other)
+MutantStack<T>& MutantStack<T>::operator=(const MutantStack<T>& other)
 {
     if(this != &other)
     {
@@ -20,29 +20,29 @@ MutantStack& MutantStack::operator=(const MutantStack& other)
 }
 
 template<typename T>
-MutantStack::~MutantStack()
+MutantStack<T>::~MutantStack()
 {}
 
 template<typename T>
-MutantStack::iterator begin()
+typename MutantStack<T>::iterator MutantStack<T>::begin() 
 {
     return this->c.begin();
 }
 
 template<typename T>
-MutantStack::iterator end()
+typename MutantStack<T>::iterator MutantStack<T>::end()
 {
     return this->c.end();
 }
 
 template<typename T>
-MutantStack::const_iterator begin() const
+typename MutantStack<T>::const_iterator MutantStack<T>::begin() const
 {
     return this->c.begin();
 }
 
 template<typename T>
-MutantStack::const_iterator end() const
+typename MutantStack<T>::const_iterator MutantStack<T>::end() const
 {
     return this->c.end();
 }
