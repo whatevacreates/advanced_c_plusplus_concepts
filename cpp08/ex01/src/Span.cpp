@@ -28,79 +28,45 @@ Span::~Span()
 
 void Span::addNumber(long long int number)
 {
-	try
+	if ((long long int)_bank.size() >= _max)
 	{
-		if ((long long int)_bank.size() >= _max)
-		{
-			throw std::runtime_error("The bank is already FULL.");
-		}
-		_bank.insert(number);
+		throw std::runtime_error("The bank of numbers is already FULL.");
 	}
-	catch (std::runtime_error &e)
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
+	_bank.insert(number);
 }
 
-long long int	Span::shortestSpan(void) const
+long long int Span::shortestSpan(void) const
 {
-	long long int	temp;
-    long long int min = 0;
+    if (_bank.size() <= 1)
+    {
+        throw std::runtime_error("The bank of numbers is too small to proceed.");
+    }
 
-	std::set<long long int>::const_iterator it;
-	try
+    long long int min = std::numeric_limits<long long int>::max();
+    std::set<long long int>::const_iterator it = _bank.begin();
+    std::set<long long int>::const_iterator next_it = it;
+    ++next_it;
 
-	{
-		if (_bank.size() <= 1)
-		{
-			throw std::exception "The bank is too small to proceed." ;
+    while (next_it != _bank.end())
+    {
+        long long int temp = *next_it - *it;
+        if (temp < min)
+        {
+            min = temp;
+        }
+        ++it;
+        ++next_it;
+    }
 
-		}
-		min = std::numeric_limits<long long int>::max();
-		for (it = std::next(_bank.begin()); it != _bank.end(); ++it)
-		{
-			temp = *it - *(std::prev(it));
-			if (min > temp)
-			{
-				min = temp;
-			}
-		}
-		
-        return min;
-	}
-	catch (std::runtime_error &e)
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
     return min;
 }
+
 long long int Span::longestSpan() const
 {
-	
-    return  *(std::prev(_bank.end())) - *(_bank.begin());
-}
-
-template<typename T>
-void Span::addRange(T a, T b)
-{
-    try{
-        for(T it = a; it != b; ++it)
-        {
-addNumber(*it);
-        }
-       
-    }
-    catch(const std::exception& e)
+    if (_bank.size() <= 1)
     {
-        std::cout << "Error caught: " << e.what() << std::endl;
+        throw std::runtime_error("The bank of numbers is too small to proceed.");
     }
 
+    return *(--_bank.end()) - *(_bank.begin());
 }

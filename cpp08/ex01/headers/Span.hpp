@@ -4,7 +4,7 @@
 # include <iostream>
 # include <set>
 # include <string>
-#include <vector>
+# include <vector>
 
 class Span
 {
@@ -22,8 +22,17 @@ class Span
 
 	long long int shortestSpan() const;
 	long long int longestSpan() const;
-    template<typename T>
-    void addRange(T b, T a);
+	template <typename T> void addRange(T a, T b)
+	{
+		for (T it = a; it != b; ++it)
+		{
+			if ((long long int)_bank.size() >= _max)
+			{
+				throw std::runtime_error("The bank of numbers is already FULL.");
+			}
+			addNumber(*it);
+		}
+	}
 };
 
 #endif
