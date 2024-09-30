@@ -4,6 +4,7 @@
 # include <iostream>
 # include <set>
 # include <string>
+#include <vector>
 
 class Span
 {
@@ -21,6 +22,8 @@ class Span
 
 	long long int shortestSpan() const;
 	long long int longestSpan() const;
+    template<typename T>
+    void addRange(T b, T a);
 };
 
 #endif

@@ -8,7 +8,7 @@ Span::Span(long long int max) : _max(max)
 {
 }
 
-Span::Span(const Span &other) : _bank(other._bank), _max(other._max),
+Span::Span(const Span &other) : _bank(other._bank), _max(other._max)
 {
 }
 
@@ -46,31 +46,31 @@ void Span::addNumber(long long int number)
 	}
 }
 
-void	shortestSpan(void)
+long long int	Span::shortestSpan(void) const
 {
 	long long int	temp;
-	long long int	min;
-	long long int	length;
+    long long int min = 0;
 
-	min = MAX_INT;
 	std::set<long long int>::const_iterator it;
 	try
+
 	{
 		if (_bank.size() <= 1)
 		{
-			throw std::runtime_error("The bank is too small to proceed.");
+			throw std::exception "The bank is too small to proceed." ;
+
 		}
-		length = (sizeof(_bank)) / sizeof(_bank[0]);
 		min = std::numeric_limits<long long int>::max();
 		for (it = std::next(_bank.begin()); it != _bank.end(); ++it)
 		{
-			temp = *it - (--*it);
+			temp = *it - *(std::prev(it));
 			if (min > temp)
 			{
 				min = temp;
 			}
 		}
-		std::cout << min << std::endl;
+		
+        return min;
 	}
 	catch (std::runtime_error &e)
 	{
@@ -80,9 +80,27 @@ void	shortestSpan(void)
 	{
 		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
+    return min;
 }
-
 long long int Span::longestSpan() const
 {
-	std::cout << *(_bank.end()) - *(_bank.begin()) << std::endl;
+	
+    return  *(std::prev(_bank.end())) - *(_bank.begin());
+}
+
+template<typename T>
+void Span::addRange(T a, T b)
+{
+    try{
+        for(T it = a; it != b; ++it)
+        {
+addNumber(*it);
+        }
+       
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "Error caught: " << e.what() << std::endl;
+    }
+
 }
