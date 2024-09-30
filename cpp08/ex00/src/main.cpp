@@ -28,6 +28,7 @@ void	testRawStringArray(DataStructures data)
 		std::cout << data.stringArrayTest[i] << " ";
 	}
     std::cout << std::endl;
+    delete [] data.stringArrayTest;
 	throw std::invalid_argument("Element not found.");
 }
 

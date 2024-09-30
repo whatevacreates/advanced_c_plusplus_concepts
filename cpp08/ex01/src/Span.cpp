@@ -35,30 +35,18 @@ void Span::addNumber(long long int number)
 	_bank.insert(number);
 }
 
-long long int Span::shortestSpan(void) const
+long long int Span::shortestSpan() const
 {
     if (_bank.size() <= 1)
     {
         throw std::runtime_error("The bank of numbers is too small to proceed.");
     }
 
-    long long int min = std::numeric_limits<long long int>::max();
-    std::set<long long int>::const_iterator it = _bank.begin();
-    std::set<long long int>::const_iterator next_it = it;
-    ++next_it;
-
-    while (next_it != _bank.end())
-    {
-        long long int temp = *next_it - *it;
-        if (temp < min)
-        {
-            min = temp;
-        }
-        ++it;
-        ++next_it;
-    }
-
-    return min;
+    std::vector<long long int> diffs(_bank.size());
+    
+    std::adjacent_difference(_bank.begin(), _bank.end(), diffs.begin());
+    
+    return *std::min_element(diffs.begin() + 1, diffs.end());
 }
 
 long long int Span::longestSpan() const

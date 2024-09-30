@@ -5,6 +5,9 @@
 # include <set>
 # include <string>
 # include <vector>
+#include <numeric>
+#include <algorithm>
+#include <stdexcept> // For exceptions
 
 class Span
 {
