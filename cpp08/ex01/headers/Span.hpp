@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include <string>
+#include <set>
 
 class Span
 {
     private:
-    std::set<int> _bank;
+    std::set<long long int> _bank;
     long long int _max;
     public:
     Span();
@@ -17,15 +18,9 @@ class Span
     ~Span();
     void addNumber(long long int number);
 
-    void shortestSpan();
-    void longestSpan();
-    struct checkCapacity : public std::exception
-    {
-        public:
-        const char* what() const throw{
-            return ("There is no more capacity.");
-        }
-    }
+   long long int shortestSpan() const;
+    long long int longestSpan() const;
+    
 };
 
 #endif
