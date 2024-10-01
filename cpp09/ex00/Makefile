@@ -4,7 +4,8 @@ CC = c++
 #CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -Iheaders
 CFLAGS = -Wall -Wextra -Werror -g -Iheaders -std=c++98
 
-SRC = src/main.cpp
+SRC = src/main.cpp \
+		src/BitcoinExchange.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

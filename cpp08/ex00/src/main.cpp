@@ -34,7 +34,7 @@ void	testRawStringArray(DataStructures data)
 
 void	testVectorInts(std::vector<int> toTest, int value)
 {
-	std::cout << "--------------------VECTOR OF INTS: "
+	std::cout << "VECTOR OF INTS: "
 				<< std::endl;
 	for (std::vector<int>::iterator it = toTest.begin(); it != toTest.end(); ++it)
 	{
