@@ -7,6 +7,7 @@
 # include <limits>
 # include <random>
 # include <string>
+#include <sstream>
 
 class Point
 {
