@@ -1,11 +1,10 @@
-NAME = span
+NAME = btc
 
 CC = c++
 #CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -Iheaders
 CFLAGS = -Wall -Wextra -Werror -g -Iheaders -std=c++98
 
-SRC = src/main.cpp \
-	src/Span.cpp
+SRC = src/main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

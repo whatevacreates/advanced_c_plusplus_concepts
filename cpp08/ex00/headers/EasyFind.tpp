@@ -2,6 +2,8 @@
 #include "EasyFind.hpp"
 #include "Utils.hpp"
 
+/// this is called: specialised functions 
+
 template <typename T> typename T::const_iterator easyfind(const T &container,
 	int value)
 {
