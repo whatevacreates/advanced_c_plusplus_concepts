@@ -8,6 +8,8 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#define WRONG_YEAR 1
+#define WRONG_VALUE 2
 
 
 class Bitcoin
@@ -23,7 +25,7 @@ class Bitcoin
     Bitcoin(const Bitcoin& other);
     Bitcoin& operator=(const Bitcoin& other);
     void exchange();
-    bool validateLine(std::string &line);
+    char validateLine(std::string &line);
 
 
 };

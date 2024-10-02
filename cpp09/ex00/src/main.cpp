@@ -27,5 +27,7 @@ int main(int argc, char *argv[])
 {
     checkArguments(argc, argv);
     Bitcoin ex(argv[1]);
+    ex.readMap();
+    or ex::readMap ?
 
 }

@@ -5,36 +5,55 @@ Bitcoin::Bitcoin():_path(""){}
 Bitcoin::Bitcoin(const std::string path):_path(path)
 {
     std::ifstream file;
-    std::string *line;
+    std::string line;
 
     file.open(path);
 
-    while(std::getline(file, *line))
+    while(std::getline(file, line))
     {
-        validateLine(line);
+        char validatedLine;
+        validatedLine = validateLine(line);
+        if(validatedLine == 'y')
+        {
+            _data.insert(std::make_pair("Error: Invalid Syntax, ciao.", WRONG_YEAR));  
+        }
+         
+        else if(validatedLine == 'v')
+        {
+              _data.insert(std::make_pair("Error: Invalid Syntax, ciao.", WRONG_VALUE));  
+        }
         std::cout << line << std::endl;
+
 
 
     }
 
 }
 
-bool Bitcoin::validateLine(std::string &line)
+char Bitcoin::validateLine(std::string &line)
 {
-    std::string str = line.substr(0,4);
-    std::stringstream ss(str);
+    std::string str = line.substr(6,7);
+  
     for(int i = 0; i < 4; i++)
     {
         if(!isdigit(str[i]))
-        *line = "Error: Invalid Syntax, ciao.";
-        return false;
-    }
+        {
+              return'y';  
+        }
+          
+    }  
+    
+    std::stringstream ss(str);
     int check;
     ss >> check;
-    if(check > 2024)
-    std::cout << "Yeah is bigger than 2024" << std::endl;
+    if(check > 12 || check < 1)
+    {
+        std::cout << "Month is invalid" << std::endl;
+        return 'm';
 
-return true;
+    }
+    
+return 's';
 }
 Bitcoin::Bitcoin(const Bitcoin& other): _path(other._path), _data(other._data)
 {
