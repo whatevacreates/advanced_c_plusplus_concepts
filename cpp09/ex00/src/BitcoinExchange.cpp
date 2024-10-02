@@ -172,11 +172,12 @@ void Bitcoin::searchDataBase()
          if(date > it2->first)
             {
                 --it2;
+                std::cout << "date: " << date << " it2->first: " << it2->first << std::endl;
                 //std::cout << "date: " <<  date << "second date: " << it2->first << " " << it2->second << std::endl;
                 std::stringstream ss(date);
                 std::string str = ss.str();
                 ss.clear();
-                std::cout << str.substr(0,4) <<  " => "<< value << " = " << std::fixed << std::setprecision(1) << value * it2->second << std::endl;
+                std::cout << date <<  " data we were looking for: " << it2->first << " => "<< value << " = " << std::fixed << std::setprecision(1) << value * it2->second << std::endl;
                 //std::cout << str.substr(0,4) << '-' <<  str.substr(6,2) << '-' << str.substr(8,2) <<  " => "<< value << " = " << std::fixed << std::setprecision(1) << value * it2->second << std::endl;
                 break;
             }
