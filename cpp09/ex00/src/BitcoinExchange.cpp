@@ -26,7 +26,7 @@ bool Bitcoin::validateLine(std::string &line)
     for(int i = 0; i < 4; i++)
     {
         if(!isdigit(str[i]))
-        line = "Error: Invalid Syntax, ciao.";
+        *line = "Error: Invalid Syntax, ciao.";
         return false;
     }
     int check;
