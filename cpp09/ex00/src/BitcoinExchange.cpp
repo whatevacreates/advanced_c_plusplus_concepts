@@ -6,18 +6,25 @@ Bitcoin::Bitcoin() : _path("")
 
 Bitcoin::Bitcoin(const std::string path) : _path(path)
 {
+
+ _errorsBank[0] = "Error: Value cannot be negative.";
+  _errorsBank[1] = "Error: Invalid syntax.";
+   _errorsBank[2] ="Error: Your value has too many decimal points.";
+    _errorsBank[3] = "Error: Value cannot be left empty.";
+     _errorsBank[4] =  "Error: Invalid month format.";
+      _errorsBank[5] = "Error: Invalid day format.";
+       _errorsBank[6] = "Error: value is too big.";
+   
 	std::ifstream file;
 	std::string line;
 	std::stringstream ss;
 	std::string dateStr;
 	std::string valueStr;
-	// int date;
-	// int value;
+
 	file.open(path);
 	while (std::getline(file, line))
 	{
 		validateLine(line);
-		std::cout << line << std::endl;
 	}
 }
 
@@ -29,6 +36,7 @@ void Bitcoin::validateLine(std::string &line)
 	size_t	i;
 	int		check;
 	int		month;
+    int date;
 
 	std::string str = line.substr(5, 2);
 	std::stringstream ss(str);
@@ -44,35 +52,33 @@ void Bitcoin::validateLine(std::string &line)
 		{
 			if (line[13] == '-')
 			{
-				_data.insert(std::make_pair("Error: Value cannot be negative.",
+				_data.push_back(std::make_pair(0,
 						-1));
 				return ;
 			}
-			_data.insert(std::make_pair("Error: Invalid syntax.", -1));
+			_data.push_back(std::make_pair(1, -1));
 			return ;
 		}
 	}
-	std::cout << "sizet i check: " << i << std::endl;
-	if (i - dot_count > 7)
+	if (dot_count > 0 && i - dot_count > 7)
 	{
-		_data.insert(std::make_pair("Error: Your value has too many decimal points.",
-				-1));
+		_data.push_back(std::make_pair(2, -1));
 		return ;
 	}
 	if (line[4] != '-' || line[7] != '-' || line.substr(10, 3) != " | ")
 	{
-		_data.insert(std::make_pair("Error: Invalid syntax.", -1));
+		_data.push_back(std::make_pair(1, -1));
 		return ;
 	}
 	if (i <= 13)
 	{
-		_data.insert(std::make_pair("Error: Value cannot be left empty.", -1));
+		_data.push_back(std::make_pair(3, -1));
 		return ;
 	}
 	ss >> month;
 	if (month > 12 || month < 1)
 	{
-		_data.insert(std::make_pair("Error: Invalid month format.", -1));
+		_data.push_back(std::make_pair(4, -1));
 		return ;
 	}
 	ss.clear();
@@ -82,19 +88,22 @@ void Bitcoin::validateLine(std::string &line)
 	ss >> check;
 	if (check > monthArray[month - 1] || check < 1)
 	{
-		_data.insert(std::make_pair("Error: Invalid day format.", -1));
+		_data.push_back(std::make_pair(4, -1));
 		return ;
 	}
 	ss.clear();
 	str = line.substr(12, MAX);
 	ss << str;
 	ss >> value;
+    ss.clear();
+    ss << (line.substr(0,4)+line.substr(5,2)+line.substr(8,2));
+    ss >> date; 
 	if (value > MAX)
 	{
-		_data.insert(std::make_pair("Error: value is too big.", -1));
+		_data.push_back(std::make_pair(6, -1));
 		return ;
 	}
-	_data.insert(std::make_pair(line.substr(0, 9), value));
+	_data.push_back(std::make_pair(date, value));
 }
 
 Bitcoin::Bitcoin(const Bitcoin &other) : _path(other._path), _data(other._data)
@@ -111,9 +120,82 @@ Bitcoin &Bitcoin::operator=(const Bitcoin &other)
 	return (*this);
 }
 
-void Bitcoin::exchange()
+void Bitcoin::loadDataBase()
 {
-	std::cout << "this is exchange" << std::endl;
+    std::ifstream file("./data/data.csv");
+    std::string line;
+    int date;
+    float  value;
+    std::string valueStr;
+
+    if(!file.is_open())
+    {
+        std::cout << "Data file is invalid." << std::endl;
+        exit(1);
+    }
+    while(std::getline(file, line))
+    {  
+        std::stringstream ss(line.substr(0,4)+line.substr(5,2)+line.substr(8,2));
+    
+        ss >> date;
+        ss.clear();
+        std::stringstream ss1(line.substr(11, MAX));
+
+        ss1 >> value;
+      _dataBase.push_back(std::make_pair(date, value));
+    }
+    
+   
+}
+
+void Bitcoin::searchDataBase()
+{
+    std::vector<std::pair<int, float> >::iterator it;
+    std::vector<std::pair<int, float> >::iterator it2;
+   
+  
+   int date;
+    float value;
+    for(it = _data.begin(); it != _data.end(); ++it)
+    {
+        if(it->second < 0)
+        {
+            std::cout <<_errorsBank[it->first] << std::endl; 
+           
+        }
+        else
+        {
+        date = it->first;
+       value = it->second;
+          for(it2 = _dataBase.begin(); it2 != _dataBase.end(); ++it2)
+    {
+         if(date > it2->first)
+            {
+                --it2;
+                //std::cout << "date: " <<  date << "second date: " << it2->first << " " << it2->second << std::endl;
+                std::stringstream ss(date);
+                std::string str = ss.str();
+                ss.clear();
+                std::cout << str.substr(0,4) <<  " => "<< value << " = " << std::fixed << std::setprecision(1) << value * it2->second << std::endl;
+                //std::cout << str.substr(0,4) << '-' <<  str.substr(6,2) << '-' << str.substr(8,2) <<  " => "<< value << " = " << std::fixed << std::setprecision(1) << value * it2->second << std::endl;
+                break;
+            }
+        
+    }
+    /*
+        for(it2 = _dataBase.begin(); it2 != _dataBase.end(); ++it2)
+        {
+            std::cout << date << " comparing to " << it2->first << " and " << it2->second << std::endl;
+            if(date > it2->first)
+            {
+                std::cout << "---------------------------------------------------doing math: " << value * it2->second << std::endl;
+                break;
+            }
+        }*/
+        }
+      
+    }
+
 }
 
 Bitcoin::~Bitcoin()

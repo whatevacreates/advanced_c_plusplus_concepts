@@ -5,19 +5,24 @@
 # include <fstream>
 # include <iostream>
 # include <limits>
-# include <map>
 # include <sstream>
 # include <string>
 # include <vector>
+#include <utility>
+#include <algorithm>
+
 # define WRONG_YEAR 1
 # define WRONG_VALUE 2
 # define MAX std::numeric_limits<int>::max()
+
 
 class Bitcoin
 {
   private:
 	std::string _path;
-	std::map<std::string, float> _data;
+	std::vector<std::pair<int, float> > _data;
+    std::vector<std::pair<int, float> > _dataBase;
+    std::string _errorsBank[7];
 
   public:
 	Bitcoin();
@@ -25,7 +30,8 @@ class Bitcoin
 	~Bitcoin();
 	Bitcoin(const Bitcoin &other);
 	Bitcoin &operator=(const Bitcoin &other);
-	void exchange();
 	void validateLine(std::string &line);
+    void loadDataBase(); 
+    void searchDataBase();
 };
 #endif
