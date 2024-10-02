@@ -3,7 +3,8 @@
 #include "BitcoinExchange.hpp"
 
 void checkArguments(int argc, char *argv[])
-{std::ifstream file;
+{
+    std::ifstream file;
     if(argc != 2)
     std::cerr << "Wrong number of arguments" << std::endl;
     try

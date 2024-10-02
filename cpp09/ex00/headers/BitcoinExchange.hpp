@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 
 class Bitcoin
@@ -17,11 +18,13 @@ class Bitcoin
 
     public:
     Bitcoin();
-    Bitcoin(std::string path);
+    Bitcoin(const std::string path);
     ~Bitcoin();
     Bitcoin(const Bitcoin& other);
     Bitcoin& operator=(const Bitcoin& other);
     void exchange();
+    bool validateLine(std::string &line);
+
 
 };
 #endif
