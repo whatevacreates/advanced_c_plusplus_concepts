@@ -8,8 +8,10 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <limits>
 #define WRONG_YEAR 1
 #define WRONG_VALUE 2
+#define MAX std::numeric_limits<int>::max()
 
 
 class Bitcoin
@@ -25,7 +27,7 @@ class Bitcoin
     Bitcoin(const Bitcoin& other);
     Bitcoin& operator=(const Bitcoin& other);
     void exchange();
-    char validateLine(std::string &line);
+   void validateLine(std::string &line);
 
 
 };
