@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include "Utils.hpp"
 
 Bitcoin::Bitcoin() : _path("")
 {
@@ -98,7 +99,7 @@ void Bitcoin::validateLine(std::string &line)
     ss.clear();
     ss << (line.substr(0,4)+line.substr(5,2)+line.substr(8,2));
     ss >> date; 
-	if (value > MAX)
+	if (value >= MAX)
 	{
 		_data.push_back(std::make_pair(6, -1));
 		return ;
@@ -135,6 +136,8 @@ void Bitcoin::loadDataBase()
     }
     while(std::getline(file, line))
     {  
+        if(line[0] == '2')
+    {
         std::stringstream ss(line.substr(0,4)+line.substr(5,2)+line.substr(8,2));
     
         ss >> date;
@@ -143,9 +146,17 @@ void Bitcoin::loadDataBase()
 
         ss1 >> value;
       _dataBase.push_back(std::make_pair(date, value));
+    }      
     }
     
    
+}
+
+std::string Bitcoin::intToString(int num)
+{
+    std::stringstream ss;
+    ss << num;
+    return ss.str();
 }
 
 void Bitcoin::searchDataBase()
@@ -153,14 +164,14 @@ void Bitcoin::searchDataBase()
     std::vector<std::pair<int, float> >::iterator it;
     std::vector<std::pair<int, float> >::iterator it2;
    
-  
+  std::string str;
    int date;
     float value;
     for(it = _data.begin(); it != _data.end(); ++it)
     {
         if(it->second < 0)
         {
-            std::cout <<_errorsBank[it->first] << std::endl; 
+            std::cout << SOFT_RED <<_errorsBank[it->first] << RESET << std::endl; 
            
         }
         else
@@ -169,30 +180,15 @@ void Bitcoin::searchDataBase()
        value = it->second;
           for(it2 = _dataBase.begin(); it2 != _dataBase.end(); ++it2)
     {
-         if(date > it2->first)
+         if(date < it2->first)
             {
                 --it2;
-                std::cout << "date: " << date << " it2->first: " << it2->first << std::endl;
-                //std::cout << "date: " <<  date << "second date: " << it2->first << " " << it2->second << std::endl;
-                std::stringstream ss(date);
-                std::string str = ss.str();
-                ss.clear();
-                std::cout << date <<  " data we were looking for: " << it2->first << " => "<< value << " = " << std::fixed << std::setprecision(1) << value * it2->second << std::endl;
-                //std::cout << str.substr(0,4) << '-' <<  str.substr(6,2) << '-' << str.substr(8,2) <<  " => "<< value << " = " << std::fixed << std::setprecision(1) << value * it2->second << std::endl;
+               str = intToString(date);
+                std::cout << LIGHT_GREEN << str.substr(0,4) << '-' <<  str.substr(4,2) << '-' << str.substr(6,2) <<  " => "<< value << " = "  << value * it2->second << RESET<< std::endl;
                 break;
             }
         
     }
-    /*
-        for(it2 = _dataBase.begin(); it2 != _dataBase.end(); ++it2)
-        {
-            std::cout << date << " comparing to " << it2->first << " and " << it2->second << std::endl;
-            if(date > it2->first)
-            {
-                std::cout << "---------------------------------------------------doing math: " << value * it2->second << std::endl;
-                break;
-            }
-        }*/
         }
       
     }

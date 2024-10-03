@@ -6,7 +6,13 @@ void	checkArguments(int argc, char *argv[])
 {
 	std::ifstream file;
 	if (argc != 2)
-		std::cerr << "Wrong number of arguments" << std::endl;
+		{
+        std::cerr << B_SOFTBLUE << ":::>>> Launch btc with the correct path to the input file." << RESET << std::endl;
+        std::cerr << B_SOFTBLUE << "hint: ./data/input2.txt" << RESET << std::endl;
+        std::cerr << BRIGHT_RED << "Wrong number of arguments" << RESET << std::endl;
+        exit(1);
+        }
+      
 	try
 	{
 		file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -16,6 +22,7 @@ void	checkArguments(int argc, char *argv[])
 	{
 		std::cout << BRIGHT_RED << "Error caught: " << e.what() << RESET << std::endl;
 		std::cout << B_SOFTBLUE << ":::>>> Launch btc with the correct path to the input file." << RESET << std::endl;
+        std::cout << B_SOFTBLUE << "hint: ./btc ./data/input2.txt" << RESET << std::endl;
 		exit(1);
 	}
 	file.close();

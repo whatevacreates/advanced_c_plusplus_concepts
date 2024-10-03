@@ -33,5 +33,6 @@ class Bitcoin
 	void validateLine(std::string &line);
     void loadDataBase(); 
     void searchDataBase();
+    std::string intToString(int num);
 };
 #endif
