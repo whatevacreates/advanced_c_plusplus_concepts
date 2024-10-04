@@ -28,6 +28,23 @@ Pmerge::~Pmerge()
 {
 }
 
+void Pmerge::runTests(std::string str)
+{
+
+mergeSort(_deq, str);
+	mergeSort(_list, str);
+
+}
+
+std::list<int> Pmerge::getList() const
+{
+		return _list;
+}
+
+std::deque<int> Pmerge::getDeq() const
+{
+		return _deq;
+}
 
 /*
 std::ostream &operator<<(std::ostream &out, const Pmerge &src)

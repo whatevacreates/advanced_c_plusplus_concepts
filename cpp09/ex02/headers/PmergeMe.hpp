@@ -1,71 +1,62 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
+# include <algorithm>
+# include <deque>
 # include <exception>
-#include <ostream>
 # include <iostream>
 # include <limits>
+# include <list>
+# include <ostream>
 # include <sstream>
 # include <string>
-#include <list>
-#include <deque>
-#include <utility>
-#include <algorithm>
+# include <utility>
 
-
-template<typename T>
-
-template<typename T>
-T<int>& startMerge(T<int>& container)
+template <typename T> T startMerge(T &container)
 {
-	std::T<int>::iterator it;
-	std::T<int> new_container;
+	T	new_container;
 
-	for(it = container.begin(); it++ != container.end(); it + 2 )
+	typename T::iterator it;
+	typename T::iterator it2 = container.begin();
+	typename T::iterator mid;
+	std::cout << "----- hello: " << std::endl;
+	for (it = container.begin(); it != container.end(); ++it)
 	{
-		if(it > it++)
-		{
-			new_container.push_back(it);
-			new_container.push_back(++it);
-		}
-		else
-		{
-			new_container.push_back(++it);
-			new_container.push_back(it);
-		}
-
+		++it2;
+		std::cout << "it2" << it2 << std::endl;
+		typename T::iterator mid = it2;
+		++mid;
+		it2 = mid;
 	}
-
-
-
-
-template<typename T>
-void mergeSort(T<int>& container, std::string str)
-{
-int data;
-std::string temp;
-
-for(int i = 0; str[i] != '\0'; i++)
-{
-
-while(str[i] == ' ' && str[i] != '\0')
-i++;
-
-int k = 0;
-while(str[i] != ' ' && str[i] != '\0')
-{
-	temp[k] = str[i];
-i++;
-}
-str[i] = '\0';
-std::streamstring ss(str);
-ss >> data;
-ss.clear();
-container.push_back(data);
-}
-container = startMerge(container);
+	std::cout << "checking midpoint: " << *mid << std::endl;
+	return (new_container);
 }
 
+template <typename T> void mergeSort(T &container, std::string str)
+{
+	int	data;
+
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		while (i < str.size() && str[i] == ' ')
+			i++;
+		std::string temp;
+		while (i < str.size() && str[i] != ' ')
+		{
+			temp += str[i];
+			i++;
+		}
+		if (temp.empty())
+		{
+			break ;
+		}
+		std::stringstream ss(temp);
+		ss >> data;
+		ss.clear();
+		container.push_back(data);
+	}
+	container = startMerge(container);
+}
 
 class Pmerge
 {
@@ -79,8 +70,10 @@ class Pmerge
 	~Pmerge();
 	Pmerge(const Pmerge &other);
 	Pmerge &operator=(const Pmerge &other);
-
+	std::deque<int> getDeq() const;
+	std::list<int> getList() const;
+	void runTests(std::string str);
 };
 
-std::ostream& operator<<(std::ostream& out, const Pmerge& src);
+std::ostream &operator<<(std::ostream &out, const Pmerge &src);
 #endif
