@@ -2,8 +2,10 @@
 # define PMERGEME_HPP
 
 # include <algorithm>
+# include <ctime>
 # include <deque>
 # include <exception>
+# include <iomanip>
 # include <iostream>
 # include <limits>
 # include <list>
@@ -12,24 +14,58 @@
 # include <string>
 # include <utility>
 
-template <typename T> T startMerge(T &container)
+template <typename T> void merge(T &left, T &right, T &result)
 {
-	T	new_container;
-
-	typename T::iterator it;
-	typename T::iterator it2 = container.begin();
-	typename T::iterator mid;
-	std::cout << "----- hello: " << std::endl;
-	for (it = container.begin(); it != container.end(); ++it)
+	typename T::iterator it_left = left.begin();
+	typename T::iterator it_right = right.begin();
+	while (it_left != left.end() && it_right != right.end())
 	{
-		++it2;
-		std::cout << "it2" << it2 << std::endl;
-		typename T::iterator mid = it2;
-		++mid;
-		it2 = mid;
+		if (*it_left <= *it_right)
+		{
+			result.push_back(*it_left);
+			++it_left;
+		}
+		else
+		{
+			result.push_back(*it_right);
+			++it_right;
+		}
 	}
-	std::cout << "checking midpoint: " << *mid << std::endl;
-	return (new_container);
+	while (it_left != left.end())
+	{
+		result.push_back(*it_left);
+		++it_left;
+	}
+	while (it_right != right.end())
+	{
+		result.push_back(*it_right);
+		++it_right;
+	}
+}
+
+template <typename T> void recursiveMergeSort(T &container)
+{
+	int	size;
+
+	size = container.size();
+	if (size <= 1)
+		return ;
+	T left, right;
+	typename T::iterator it = container.begin();
+	for (int i = 0; i < size / 2; ++i)
+	{
+		left.push_back(*it);
+		++it;
+	}
+	while (it != container.end())
+	{
+		right.push_back(*it);
+		++it;
+	}
+	recursiveMergeSort(left);
+	recursiveMergeSort(right);
+	container.clear();
+	merge(left, right, container);
 }
 
 template <typename T> void mergeSort(T &container, std::string str)
@@ -53,9 +89,26 @@ template <typename T> void mergeSort(T &container, std::string str)
 		std::stringstream ss(temp);
 		ss >> data;
 		ss.clear();
+		if (data >= 2147483647)
+		{
+			std::cerr << "Error: number > " << std::numeric_limits<int>::max() << " detected" << std::endl;
+			exit(1);
+		}
 		container.push_back(data);
 	}
-	container = startMerge(container);
+	if (container.size() == 1)
+	{
+		std::cout << "Input is already sorted, contains one number, "
+			"ciao :D" << std::endl;
+		exit(0);
+	}
+	recursiveMergeSort(container);
+	std::cout << "Sorted numbers: ";
+	for (typename T::iterator it = container.begin(); it != container.end(); ++it)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 }
 
 class Pmerge
@@ -72,7 +125,14 @@ class Pmerge
 	Pmerge &operator=(const Pmerge &other);
 	std::deque<int> getDeq() const;
 	std::list<int> getList() const;
+	long long int getTime();
 	void runTests(std::string str);
+	void recursiveMergeSortDeque(std::deque<int> &container);
+	void mergeDeque(std::deque<int> &left, std::deque<int> &right,
+		std::deque<int> &result);
+	void recursiveMergeSortList(std::list<int> &container);
+	void mergeList(std::list<int> &left, std::list<int> &right,
+		std::list<int> &result);
 };
 
 std::ostream &operator<<(std::ostream &out, const Pmerge &src);

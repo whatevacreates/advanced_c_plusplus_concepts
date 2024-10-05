@@ -33,4 +33,5 @@ int	main(int argc, char *argv[])
 		array = array + ' ' + argv[i] + ' ';
 	Pmerge pmerge(array);
 	pmerge.runTests(array);
+	std::cout << std::endl;
 }
