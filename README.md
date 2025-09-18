@@ -30,7 +30,7 @@ No external libraries beyond the standard library
 
 🚀 Getting Started
 # clone the repository
-git clone https://github.com/whatevacreates/cplusplus_modules42.git
+git clone https://github.com/whatevacreates/advanced_c_plusplus_concepts.git
 cd cplusplus_modules42
 
 # navigate to a module and exercise, then build
