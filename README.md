@@ -26,12 +26,13 @@ Standard: C++98 (or specified per module)
 
 Compile flags: -Wall -Wextra -Werror
 
+
 No external libraries beyond the standard library
 
 🚀 Getting Started
 # clone the repository
 git clone https://github.com/whatevacreates/advanced_c_plusplus_concepts.git
-cd cplusplus_modules42
+cd advanced_c_plusplus_concepts
 
 # navigate to a module and exercise, then build
 cd cpp01/ex03
